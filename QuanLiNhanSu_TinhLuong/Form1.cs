@@ -5,9 +5,16 @@ namespace QuanLiNhanSu_TinhLuong
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        // 1. Khai báo 1 biến để lưu quyền
+        string quyenNguoiDung = "";
+
+        // 2. Nhét thêm chữ "string role" vào giữa 2 dấu ngoặc
+        public Form1(string role)
         {
             InitializeComponent();
+
+            // 3. Nhận quyền từ form đăng nhập và lưu lại
+            quyenNguoiDung = role;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
