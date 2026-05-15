@@ -30,10 +30,15 @@ namespace QuanLiNhanSu_TinhLuong
                 decimal luongMotNgay = luongCoBan / soNgayTrongThang;
 
                 // Tổng lương = (Lương 1 ngày * số ngày đi làm) + Phụ cấp
-                decimal tongLuong = (luongMotNgay * (decimal)soNgayDiLam) + phuCap;
+                // 5. Tính tổng tiền phạt trong tháng của nhân viên đó
+                decimal tongPhat = context.Viphams
+                                   .Where(vp => vp.MaNv == maNV && vp.NgayViPham.Value.Month == thang)
+                                   .Sum(vp => vp.TienPhat ?? 0);
 
-                return Math.Round(tongLuong, 0); // Làm tròn số cho đẹp
+                // 6. Tổng lương thực lãnh cuối cùng
+                decimal tongLuongThucLanh = (luongMotNgay * (decimal)soNgayDiLam) + phuCap - tongPhat;
             }
+            return 0;
         }
     }
 }

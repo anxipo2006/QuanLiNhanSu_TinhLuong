@@ -28,35 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dgvNhanVien = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dgvNhanVien).BeginInit();
+            button1 = new Button();
+            button2 = new Button();
             SuspendLayout();
             // 
-            // dgvNhanVien
+            // button1
             // 
-            dgvNhanVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvNhanVien.Location = new Point(158, 104);
-            dgvNhanVien.Name = "dgvNhanVien";
-            dgvNhanVien.RowHeadersWidth = 51;
-            dgvNhanVien.Size = new Size(555, 188);
-            dgvNhanVien.TabIndex = 0;
-            dgvNhanVien.CellContentClick += dataGridView1_CellContentClick;
+            button1.Location = new Point(265, 150);
+            button1.Name = "button1";
+            button1.Size = new Size(182, 29);
+            button1.TabIndex = 0;
+            button1.Text = "Test AI Gemini";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(600, 150);
+            button2.Name = "button2";
+            button2.Size = new Size(196, 29);
+            button2.TabIndex = 1;
+            button2.Text = "Test Gửi Email";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(946, 450);
-            Controls.Add(dgvNhanVien);
+            Controls.Add(button2);
+            Controls.Add(button1);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
-            ((System.ComponentModel.ISupportInitialize)dgvNhanVien).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DataGridView dgvNhanVien;
+        private Button button1;
+        private Button button2;
     }
 }
