@@ -33,7 +33,7 @@ public partial class QuanlynhansuContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=localhost;database=quanlynhansu;user=root;password=Anxl1234@", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.44-mysql"));
+        => optionsBuilder.UseMySql("server=localhost;database=quanlynhansu;port=3305;user=root;password=1234", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.44-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -122,7 +122,7 @@ public partial class QuanlynhansuContext : DbContext
 
             entity.Property(e => e.MaNv).HasColumnName("MaNV");
             entity.Property(e => e.DiaChi).HasMaxLength(255);
-            entity.Property(e => e.Email).HasMaxLength(100);
+           // entity.Property(e => e.Email).HasMaxLength(100);
             entity.Property(e => e.GioiTinh).HasMaxLength(10);
             entity.Property(e => e.HoTen).HasMaxLength(100);
             entity.Property(e => e.LuongCoBan).HasPrecision(18);

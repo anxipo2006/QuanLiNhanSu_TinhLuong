@@ -105,6 +105,7 @@
             Name = "Login";
             Text = "Login";
             WindowState = FormWindowState.Minimized;
+            Load += Login_Load;
             ResumeLayout(false);
             PerformLayout();
         }

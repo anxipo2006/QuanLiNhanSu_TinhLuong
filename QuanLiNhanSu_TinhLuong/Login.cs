@@ -53,5 +53,10 @@ namespace QuanLiNhanSu_TinhLuong
                 MessageBox.Show("Lỗi kết nối cơ sở dữ liệu. Vui lòng xem log.txt!", "Lỗi hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

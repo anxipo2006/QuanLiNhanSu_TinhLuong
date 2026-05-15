@@ -23,7 +23,7 @@ public partial class Nhanvien
 
     public decimal LuongCoBan { get; set; }
 
-    public string? Email { get; set; }
+   // public string? Email { get; set; }
 
     public virtual ICollection<Bangluong> Bangluongs { get; set; } = new List<Bangluong>();
 
