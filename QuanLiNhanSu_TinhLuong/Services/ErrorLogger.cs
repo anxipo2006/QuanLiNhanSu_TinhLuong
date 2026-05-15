@@ -4,7 +4,7 @@ using System.IO;
 namespace QuanLiNhanSu_TinhLuong.Services
 {
     // Bắt buộc phải là chữ 'static' để các bạn khác gọi thẳng tên class mà không cần 'new'
-    public static class ErrorLogger
+    public static class ErrorLoggers
     {
         // Hàm nhận vào biến lỗi (Exception) và tự động ghi ra file
         public static void WriteLog(Exception ex)
