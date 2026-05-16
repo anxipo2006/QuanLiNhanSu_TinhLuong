@@ -57,7 +57,7 @@
             // picAvatar
             // 
             picAvatar.BackColor = SystemColors.ControlLight;
-            picAvatar.Location = new Point(12, 386);
+            picAvatar.Location = new Point(12, 324);
             picAvatar.Name = "picAvatar";
             picAvatar.Size = new Size(75, 52);
             picAvatar.TabIndex = 0;
@@ -65,7 +65,7 @@
             // 
             // btnChọnAnh
             // 
-            btnChọnAnh.Location = new Point(12, 347);
+            btnChọnAnh.Location = new Point(12, 265);
             btnChọnAnh.Name = "btnChọnAnh";
             btnChọnAnh.Size = new Size(75, 23);
             btnChọnAnh.TabIndex = 1;
@@ -76,9 +76,9 @@
             // dgvNhanVien
             // 
             dgvNhanVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvNhanVien.Location = new Point(126, 288);
+            dgvNhanVien.Location = new Point(113, 200);
             dgvNhanVien.Name = "dgvNhanVien";
-            dgvNhanVien.Size = new Size(642, 150);
+            dgvNhanVien.Size = new Size(675, 238);
             dgvNhanVien.TabIndex = 2;
             dgvNhanVien.CellContentClick += dgvNhanVien_CellContentClick;
             // 
@@ -166,7 +166,7 @@
             // cboPhongBan
             // 
             cboPhongBan.FormattingEnabled = true;
-            cboPhongBan.Location = new Point(517, 74);
+            cboPhongBan.Location = new Point(523, 74);
             cboPhongBan.Name = "cboPhongBan";
             cboPhongBan.Size = new Size(121, 23);
             cboPhongBan.TabIndex = 12;
@@ -174,7 +174,7 @@
             // cboChucVu
             // 
             cboChucVu.FormattingEnabled = true;
-            cboChucVu.Location = new Point(517, 108);
+            cboChucVu.Location = new Point(523, 108);
             cboChucVu.Name = "cboChucVu";
             cboChucVu.Size = new Size(121, 23);
             cboChucVu.TabIndex = 13;
@@ -190,7 +190,7 @@
             // 
             // btnThem
             // 
-            btnThem.Location = new Point(211, 213);
+            btnThem.Location = new Point(214, 171);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(75, 23);
             btnThem.TabIndex = 15;
@@ -200,7 +200,7 @@
             // 
             // btnSua
             // 
-            btnSua.Location = new Point(348, 213);
+            btnSua.Location = new Point(355, 171);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(75, 23);
             btnSua.TabIndex = 16;
@@ -210,7 +210,7 @@
             // 
             // btnXoa
             // 
-            btnXoa.Location = new Point(490, 213);
+            btnXoa.Location = new Point(497, 171);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(75, 23);
             btnXoa.TabIndex = 17;

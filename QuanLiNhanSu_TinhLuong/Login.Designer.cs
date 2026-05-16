@@ -34,6 +34,7 @@
             txtPassword = new TextBox();
             label3 = new Label();
             btnDangNhap = new Button();
+            btnDangKy = new Button();
             SuspendLayout();
             // 
             // label1
@@ -83,19 +84,30 @@
             // 
             // btnDangNhap
             // 
-            btnDangNhap.Location = new Point(359, 210);
+            btnDangNhap.Location = new Point(391, 201);
             btnDangNhap.Name = "btnDangNhap";
-            btnDangNhap.Size = new Size(96, 23);
+            btnDangNhap.Size = new Size(87, 23);
             btnDangNhap.TabIndex = 5;
             btnDangNhap.Text = "Đăng Nhập";
             btnDangNhap.UseVisualStyleBackColor = true;
             btnDangNhap.Click += btnDangNhap_Click;
+            // 
+            // btnDangKy
+            // 
+            btnDangKy.Location = new Point(306, 201);
+            btnDangKy.Name = "btnDangKy";
+            btnDangKy.Size = new Size(75, 23);
+            btnDangKy.TabIndex = 6;
+            btnDangKy.Text = "Đăng Ký";
+            btnDangKy.UseVisualStyleBackColor = true;
+            btnDangKy.Click += btnDangKy_Click;
             // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnDangKy);
             Controls.Add(btnDangNhap);
             Controls.Add(label3);
             Controls.Add(txtPassword);
@@ -118,5 +130,6 @@
         private TextBox txtPassword;
         private Label label3;
         private Button btnDangNhap;
+        private Button btnDangKy;
     }
 }
