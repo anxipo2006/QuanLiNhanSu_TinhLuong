@@ -129,7 +129,7 @@ public partial class QuanlynhansuContext : DbContext
 
             entity.Property(e => e.MaNv).HasColumnName("MaNV");
             entity.Property(e => e.DiaChi).HasMaxLength(255);
-           // entity.Property(e => e.Email).HasMaxLength(100);
+            entity.Property(e => e.Email).HasMaxLength(100);
             entity.Property(e => e.GioiTinh).HasMaxLength(10);
             entity.Property(e => e.HoTen).HasMaxLength(100);
             entity.Property(e => e.LuongCoBan).HasPrecision(18);

@@ -1,13 +1,14 @@
-﻿using iTextSharp.text;
+﻿using ClosedXML.Excel;
+using iTextSharp.text;
 using iTextSharp.text.pdf;
+using QuanLiNhanSu_TinhLuong.Services;
 using System.ComponentModel;
+using System.Data;
 using System.Drawing.Printing;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using ClosedXML.Excel;
-using System.Data;
 
 namespace QuanLiNhanSu_TinhLuong
 {
@@ -191,7 +192,7 @@ namespace QuanLiNhanSu_TinhLuong
         private void btnChotLuong_Click(object sender, EventArgs e)
         {
            
-        {
+        
             try
             {
                 using (var context = new QuanLiNhanSu_TinhLuong.Data.QuanlynhansuContext())
@@ -216,11 +217,11 @@ namespace QuanLiNhanSu_TinhLuong
 
                     foreach (var item in danhSachCong)
                     {
-                        // Gọi hàm tính tiền từ class NghiepVuLuong
-                        decimal tienThucLanh = nghiepVu.TinhLuongThucLanh(item.MaNV.Value, thangChot, namChot, (float)item.TongNgayCong);
+                            // Gọi hàm tính tiền từ class NghiepVuLuong
+                            decimal tienThucLanh = nghiepVu.TinhLuongThucLanh(item.MaNV.Value, thangChot, namChot);
 
-                        // TO DO: Viết code Insert số tiền này vào bảng SalarySlip
-                    }
+                            // TO DO: Viết code Insert số tiền này vào bảng SalarySlip
+                        }
                     MessageBox.Show("Đã chốt lương thành công cho toàn bộ nhân viên!");
                 }
             }
@@ -231,7 +232,7 @@ namespace QuanLiNhanSu_TinhLuong
                 MessageBox.Show("Có lỗi xảy ra! Đã ghi vào file log.", "Thông báo");
             }
         }
-    }
+    
 
         private async void btnTestGemini_Click(object sender, EventArgs e)
         {
@@ -261,7 +262,7 @@ namespace QuanLiNhanSu_TinhLuong
             // 2. Gửi mail
             string emailNhan = "tronga96@gmail.com";
 
-            email.GuiEmailPhieuLuong(emailNhan, "PhieuLuongTest", duongDanNhap);
+            email.GuiEmailKemFile(emailNhan, "Thông báo Lương tháng này", "Chào bạn, đính kèm là phiếu lương chi tiết tháng này.", duongDanNhap);
 
             MessageBox.Show("Đã chạy lệnh gửi mail! Mở hộp thư kiểm tra thử nhé.", "Thông báo");
         }
