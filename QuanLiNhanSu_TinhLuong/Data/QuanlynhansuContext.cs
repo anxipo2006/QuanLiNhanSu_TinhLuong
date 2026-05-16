@@ -31,11 +31,17 @@ public partial class QuanlynhansuContext : DbContext
 
     public virtual DbSet<Vipham> Viphams { get; set; }
 
-  
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string...
-    => optionsBuilder.UseMySql("server=localhost;database=QuanLyNhanSu_DB;user=root;password=1234", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.44-mysql"));
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            // Chuỗi kết nối trực tuyến lên Cloud Aiven của nhóm
+            string cloudConnectionString = "Server=mysql-1e9ceefa-anlozz2006-dfce.c.aivencloud.com;Port=24010;Database=defaultdb;User=avnadmin;Password=AVNS_XYUhQ1MoKjXpQ5dQDD_;SslMode=Required;";
+
+            optionsBuilder.UseMySql(cloudConnectionString, ServerVersion.AutoDetect(cloudConnectionString));
+        }
+    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
