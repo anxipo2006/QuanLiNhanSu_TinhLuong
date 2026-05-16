@@ -23,6 +23,8 @@ public partial class Nhanvien
 
     public decimal LuongCoBan { get; set; }
 
+    public string? Email { get; set; }
+
     public virtual ICollection<Bangluong> Bangluongs { get; set; } = new List<Bangluong>();
 
     public virtual ICollection<Chamcong> Chamcongs { get; set; } = new List<Chamcong>();
@@ -30,4 +32,6 @@ public partial class Nhanvien
     public virtual Chucvu? MaCvNavigation { get; set; }
 
     public virtual Phongban? MaPbNavigation { get; set; }
+
+    public virtual ICollection<Vipham> Viphams { get; set; } = new List<Vipham>();
 }
