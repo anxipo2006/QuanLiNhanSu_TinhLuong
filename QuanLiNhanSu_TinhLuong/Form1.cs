@@ -1,83 +1,65 @@
-﻿using ClosedXML.Excel;
-using iTextSharp.text;
+﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
-using QuanLiNhanSu_TinhLuong.Services;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing.Printing;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using ClosedXML.Excel;
+using System.Data;
+using System;
+using System.IO;
 
 namespace QuanLiNhanSu_TinhLuong
 {
     public partial class Form1 : Form
     {
-        // 1. Khai báo 1 biến để lưu quyền
         string quyenNguoiDung = "";
 
-        // 2. Nhét thêm chữ "string role" vào giữa 2 dấu ngoặc
         public Form1(string role)
         {
             InitializeComponent();
-
-            // 3. Nhận quyền từ form đăng nhập và lưu lại
             quyenNguoiDung = role;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            if (quyenNguoiDung != "Admin" && quyenNguoiDung != "Trưởng phòng")
+            {
+                button1.Enabled = false;
+                btnChotLuong.Enabled = false;
+                MessageBox.Show("Bạn đang truy cập với quyền Nhân viên. Các chức năng Chốt Lương và Lưu Ngày Công đã được khóa an toàn.",
+                                "Thông báo phân quyền", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
             using (var context = new Data.QuanlynhansuContext())
             {
-                //dgvNhanVien.DataSource = context.Nhanviens.ToList();
+                dgvNhanVien.DataSource = context.Nhanviens.ToList();
             }
         }
-
 
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                // Khởi tạo Context để làm việc với Database (như bạn đã làm ở hàm Load)
                 using (var db = new Data.QuanlynhansuContext())
                 {
-                    // Duyệt qua từng dòng trên bảng dgvNhanVien
-                    foreach (DataGridViewRow row in dgvNhanVien.Rows)
+                    Models.Chamcong banGhiTest = new Models.Chamcong()
                     {
-                        // Bỏ qua dòng trống cuối cùng để tránh lỗi
-                        if (row.IsNewRow) continue;
+                        MaNv = 1,
+                        ThangNam = "10/2026",
+                        SoNgayDiLam = 26
+                    };
 
-                        // LƯU Ý QUAN TRỌNG: 
-                        // - Số 0 là vị trí cột Mã Nhân Viên (thường là cột đầu tiên).
-                        // - Bạn cần thay số 3 thành vị trí cột "Số ngày làm" mà bạn vừa thêm (ví dụ nếu nó là cột thứ 4 thì index sẽ là 3).
-                        if (row.Cells[3].Value != null)
-                        {
-                            int maNhanVien = Convert.ToInt32(row.Cells[0].Value);
-                            float soNgayLam = Convert.ToSingle(row.Cells[3].Value);
-                            string thangNamHienTai = DateTime.Now.ToString("MM/yyyy");
-
-                            // Tạo một đối tượng Chamcong mới nằm trong thư mục Models
-                            Models.Chamcong banGhiChamCong = new Models.Chamcong()
-                            {
-                                MaNv = maNhanVien,
-                                ThangNam = thangNamHienTai,
-                                SoNgayDiLam = soNgayLam
-                            };
-
-                            // Thêm vào DB
-                            db.Chamcongs.Add(banGhiChamCong);
-                        }
-                    }
-
-                    // Lưu toàn bộ thay đổi xuống Database
+                    db.Chamcongs.Add(banGhiTest);
                     db.SaveChanges();
-                    MessageBox.Show("Lưu ngày công thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    MessageBox.Show("Đã chèn cứng 1 dòng chấm công vào DB thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -85,9 +67,9 @@ namespace QuanLiNhanSu_TinhLuong
                 MessageBox.Show("Có lỗi xảy ra: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void btnXuatBaoCao_Click(object sender, EventArgs e)
         {
-
             if (dgvNhanVien.Rows.Count > 0)
             {
                 SaveFileDialog save = new SaveFileDialog();
@@ -106,20 +88,17 @@ namespace QuanLiNhanSu_TinhLuong
                     {
                         try
                         {
-                            // 1. Tạo bảng PDF (Sửa lỗi PdfPTable và Element)
                             PdfPTable pTable = new PdfPTable(dgvNhanVien.Columns.Count);
                             pTable.DefaultCell.Padding = 2;
                             pTable.WidthPercentage = 100;
-                            pTable.HorizontalAlignment = iTextSharp.text.Element.ALIGN_LEFT; // Thêm iTextSharp.text vào trước Element
+                            pTable.HorizontalAlignment = iTextSharp.text.Element.ALIGN_LEFT;
 
-                            // 2. Thêm Header (Tiêu đề cột)
                             foreach (DataGridViewColumn col in dgvNhanVien.Columns)
                             {
-                                PdfPCell pCell = new PdfPCell(new Phrase(col.HeaderText)); pTable.AddCell(pCell);
+                                PdfPCell pCell = new PdfPCell(new Phrase(col.HeaderText));
+                                pTable.AddCell(pCell);
                             }
 
-                            // 3. Khởi tạo Document (Sửa các lỗi từ dòng 123-127 trong danh sách lỗi trước đó)
-                            // Lưu ý: Dùng tên đầy đủ iTextSharp.text.Document để không bị lẫn với thư viện hệ thống
                             using (FileStream stream = new FileStream(save.FileName, FileMode.Create))
                             {
                                 iTextSharp.text.Document pdfDoc = new iTextSharp.text.Document(iTextSharp.text.PageSize.A4, 10f, 10f, 10f, 0f);
@@ -138,10 +117,7 @@ namespace QuanLiNhanSu_TinhLuong
         }
 
         private void btnXuatExcel_Click(object sender, EventArgs e)
-
         {
-
-            // 1. Khởi tạo hộp thoại lưu file
             using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx", FileName = "BaoCaoNhanSu.xlsx" })
             {
                 if (sfd.ShowDialog() == DialogResult.OK)
@@ -150,35 +126,48 @@ namespace QuanLiNhanSu_TinhLuong
                     {
                         using (XLWorkbook workbook = new XLWorkbook())
                         {
-                            // 2. Tạo một DataTable để chứa dữ liệu từ DataGridView
                             DataTable dt = new DataTable();
 
-                            // Thêm các cột tiêu đề
+                            // TẠO BỘ LỌC: Danh sách các tên cột rác cần vứt bỏ
+                            string[] cotRac = { "Bangluongs", "Chamcongs", "Viphams", "Chucvus", "Phongbans", "MaCvNavigation", "MaPbNavigation" };
+
+                            // 1. Thêm tiêu đề cột (Bỏ qua cột rác)
                             foreach (DataGridViewColumn col in dgvNhanVien.Columns)
                             {
-                                dt.Columns.Add(col.HeaderText);
+                                if (!cotRac.Contains(col.Name))
+                                {
+                                    dt.Columns.Add(col.HeaderText);
+                                }
                             }
 
-                            // Thêm các dòng dữ liệu (Dựa trên dgvNhanVien bạn đã dùng ở phần PDF)
+                            // 2. Thêm dữ liệu từng dòng
                             foreach (DataGridViewRow row in dgvNhanVien.Rows)
                             {
                                 if (!row.IsNewRow)
                                 {
                                     DataRow dr = dt.NewRow();
+                                    int dtIndex = 0; // Biến đếm vị trí cột cho DataTable sạch
+
                                     for (int i = 0; i < dgvNhanVien.Columns.Count; i++)
                                     {
-                                        dr[i] = row.Cells[i].Value?.ToString() ?? "";
+                                        string colName = dgvNhanVien.Columns[i].Name;
+
+                                        // Chỉ lấy dữ liệu nếu cột đó KHÔNG nằm trong danh sách rác
+                                        if (!cotRac.Contains(colName))
+                                        {
+                                            dr[dtIndex] = row.Cells[i].Value?.ToString() ?? "";
+                                            dtIndex++;
+                                        }
                                     }
                                     dt.Rows.Add(dr);
                                 }
                             }
 
-                            // 3. Đưa DataTable vào Worksheet và lưu file
                             var worksheet = workbook.Worksheets.Add(dt, "Danh sách");
-                            worksheet.Columns().AdjustToContents(); // Tự động căn chỉnh độ rộng cột
+                            worksheet.Columns().AdjustToContents();
 
                             workbook.SaveAs(sfd.FileName);
-                            MessageBox.Show("Xuất file Excel thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Xuất file Excel thành công! Đã dọn sạch bong các cột mã Code thừa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                     catch (Exception ex)
@@ -191,82 +180,120 @@ namespace QuanLiNhanSu_TinhLuong
 
         private void btnChotLuong_Click(object sender, EventArgs e)
         {
-           
-        
             try
             {
                 using (var context = new QuanLiNhanSu_TinhLuong.Data.QuanlynhansuContext())
                 {
                     int thangChot = 10;
                     int namChot = 2026;
-                        string chuoiThangNam = thangChot.ToString("D2") + "/" + namChot.ToString();
-                        // Sử dụng GroupBy và Sum của LINQ theo yêu cầu của thầy
-                        var danhSachCong = context.Chamcongs
-                            .Where(t => t.ThangNam == chuoiThangNam)
-                            .GroupBy(t => t.MaNv)
-                            .Select(group => new
-                             {
-                                 MaNV = group.Key,
-                                 // Dùng cột SoNgayDiLam có sẵn trong bảng của bạn
-                                 TongNgayCong = group.Sum(x => x.SoNgayDiLam)
-                             })
-                             .ToList();
+                    string chuoiThangNam = thangChot.ToString("D2") + "/" + namChot.ToString();
 
-                        // Khởi tạo nghiệp vụ của Nhóm trưởng An
-                        QuanLiNhanSu_TinhLuong.NghiepVuLuong nghiepVu = new QuanLiNhanSu_TinhLuong.NghiepVuLuong();
+                    var danhSachCong = context.Chamcongs
+                        .Where(t => t.ThangNam == chuoiThangNam)
+                        .GroupBy(t => t.MaNv)
+                        .Select(group => new
+                        {
+                            MaNV = group.Key,
+                            TongNgayCong = group.Sum(x => x.SoNgayDiLam)
+                        })
+                        .ToList();
+
+                    QuanLiNhanSu_TinhLuong.NghiepVuLuong nghiepVu = new QuanLiNhanSu_TinhLuong.NghiepVuLuong();
 
                     foreach (var item in danhSachCong)
                     {
-                            // Gọi hàm tính tiền từ class NghiepVuLuong
-                            decimal tienThucLanh = nghiepVu.TinhLuongThucLanh(item.MaNV.Value, thangChot, namChot);
+                        decimal tienThucLanh = nghiepVu.TinhLuongThucLanh(item.MaNV.Value, thangChot, namChot);
 
-                            // TO DO: Viết code Insert số tiền này vào bảng SalarySlip
-                        }
-                    MessageBox.Show("Đã chốt lương thành công cho toàn bộ nhân viên!");
+                        Models.Bangluong phieuLuongMoi = new Models.Bangluong()
+                        {
+                            MaNv = item.MaNV.Value,
+                            ThangNam = thangChot.ToString("D2") + "/" + namChot.ToString(),
+                            TongTienLuong = tienThucLanh
+                        };
+                        context.Bangluongs.Add(phieuLuongMoi);
+                    }
+
+                    context.SaveChanges();
+                    MessageBox.Show("Đã chốt lương và LƯU VÀO DATABASE thành công!", "Thông báo");
                 }
             }
             catch (Exception ex)
             {
-                // Ghi log lỗi theo yêu cầu của nhóm trưởng
-                //QuanLiNhanSu_TinhLuong.Services.ErrorLogger.WriteLog(ex);
-                MessageBox.Show("Có lỗi xảy ra! Đã ghi vào file log.", "Thông báo");
+                QuanLiNhanSu_TinhLuong.Services.ErrorLogger.WriteLog(ex);
+                MessageBox.Show("Có lỗi xảy ra trong quá trình chốt lương! Đã tiến hành ghi vết vào file log.", "Thông báo lỗi");
             }
         }
-    
 
         private async void btnTestGemini_Click(object sender, EventArgs e)
         {
-            // Bật thông báo cho biết đang chờ AI suy nghĩ
             MessageBox.Show("Đang gửi câu hỏi cho AI... Vui lòng đợi vài giây nhấn OK!");
-
-            // Gọi class GeminiService của bạn
             Services.GeminiService ai = new Services.GeminiService();
-
-            // Đặt một câu hỏi thử
             string ketQua = await ai.HoiDapGemini("Viết một câu chào mừng nhân viên mới gia nhập công ty thật ngắn gọn.");
-
-            // Hiển thị kết quả AI trả về
             MessageBox.Show(ketQua, "Kết quả từ Gemini");
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Services.EmailService email = new Services.EmailService();
-
-            // 1. Tạo file nháp tự động ngoài màn hình Desktop cho an toàn
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             string duongDanNhap = System.IO.Path.Combine(desktopPath, "PhieuLuongTest.txt");
 
             System.IO.File.WriteAllText(duongDanNhap, "Đây là dữ liệu test gửi mail phiếu lương của Nhóm 02.");
 
-            // 2. Gửi mail
             string emailNhan = "tronga96@gmail.com";
 
-            email.GuiEmailKemFile(emailNhan, "Thông báo Lương tháng này", "Chào bạn, đính kèm là phiếu lương chi tiết tháng này.", duongDanNhap);
+            email.GuiEmailKemFile(emailNhan, "PhieuLuongTest", "Gửi test tính năng gửi mail của dự án", duongDanNhap);
 
             MessageBox.Show("Đã chạy lệnh gửi mail! Mở hộp thư kiểm tra thử nhé.", "Thông báo");
         }
 
+        // HÀM CHỈ LÀM NHIỆM VỤ VẼ BIÊN LAI
+        private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            // Cài đặt Font chữ
+            System.Drawing.Font fontTieuDe = new System.Drawing.Font("Arial", 20, System.Drawing.FontStyle.Bold);
+            System.Drawing.Font fontThuong = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Regular);
+
+            // Vẽ text tiêu đề lên tờ giấy in
+            e.Graphics.DrawString("CÔNG TY TNHH B.A.H", fontTieuDe, System.Drawing.Brushes.Black, new System.Drawing.Point(250, 50));
+            e.Graphics.DrawString("BIÊN LAI THANH TOÁN LƯƠNG", new System.Drawing.Font("Arial", 16, System.Drawing.FontStyle.Bold), System.Drawing.Brushes.Black, new System.Drawing.Point(230, 100));
+
+            // Lấy dữ liệu thật từ DataGridView truyền vào
+            string tenNhanVien = "Huỳnh Phúc Thịnh";
+            string tienLuong = "0";
+
+            if (dgvNhanVien.CurrentRow != null && !dgvNhanVien.CurrentRow.IsNewRow)
+            {
+                // Truy xuất giá trị cột Họ tên và Lương Cơ Bản
+                tenNhanVien = dgvNhanVien.CurrentRow.Cells["HoTen"].Value?.ToString() ?? "Huỳnh Phúc Thịnh";
+                tienLuong = dgvNhanVien.CurrentRow.Cells["LuongCoBan"].Value?.ToString() ?? "0";
+            }
+
+            decimal luongFormat = 0;
+            decimal.TryParse(tienLuong, out luongFormat);
+
+            // Vẽ dữ liệu nhân viên
+            e.Graphics.DrawString($"Nhân viên: {tenNhanVien}", fontThuong, System.Drawing.Brushes.Black, new System.Drawing.Point(100, 160));
+            e.Graphics.DrawString("Kỳ lương: Tháng 10/2026", fontThuong, System.Drawing.Brushes.Black, new System.Drawing.Point(100, 190));
+            e.Graphics.DrawString($"Tổng thực lãnh: {luongFormat:N0} VNĐ", new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold), System.Drawing.Brushes.Red, new System.Drawing.Point(100, 220));
+
+            // Kẻ chỉ và ký tên
+            e.Graphics.DrawString("--------------------------------------------------", fontThuong, System.Drawing.Brushes.Black, new System.Drawing.Point(100, 250));
+            e.Graphics.DrawString("Chữ ký người nhận", fontThuong, System.Drawing.Brushes.Black, new System.Drawing.Point(500, 280));
+        }
+
+        // HÀM GỌI LỆNH MỞ CỬA SỔ XEM TRƯỚC BẢN IN (GẮN VÀO NÚT BẤM)
+        private void btnInBienLai_Click(object sender, EventArgs e)
+        {
+            // Gắn tài liệu vào màn hình Preview
+            printPreviewDialog1.Document = printDocument1;
+
+            // Chỉnh kích thước form xem trước cho dễ nhìn
+            printPreviewDialog1.Width = 800;
+            printPreviewDialog1.Height = 600;
+
+            // Bật form xem trước lên
+            printPreviewDialog1.ShowDialog();
+        }
     }
 }
-

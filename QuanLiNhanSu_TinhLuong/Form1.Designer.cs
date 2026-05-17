@@ -39,6 +39,9 @@
             btnXuatBaoCao = new Button();
             btnXuatExcel = new Button();
             btnChotLuong = new Button();
+            printDocument1 = new System.Drawing.Printing.PrintDocument();
+            printPreviewDialog1 = new PrintPreviewDialog();
+            btnInBienLai = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvNhanVien).BeginInit();
             SuspendLayout();
             // 
@@ -176,6 +179,31 @@
             btnChotLuong.UseVisualStyleBackColor = false;
             btnChotLuong.Click += btnChotLuong_Click;
             // 
+            // printDocument1
+            // 
+            printDocument1.PrintPage += printDocument1_PrintPage;
+            // 
+            // printPreviewDialog1
+            // 
+            printPreviewDialog1.AutoScrollMargin = new Size(0, 0);
+            printPreviewDialog1.AutoScrollMinSize = new Size(0, 0);
+            printPreviewDialog1.ClientSize = new Size(400, 300);
+            printPreviewDialog1.Enabled = true;
+            printPreviewDialog1.Icon = (Icon)resources.GetObject("printPreviewDialog1.Icon");
+            printPreviewDialog1.Name = "printPreviewDialog1";
+            printPreviewDialog1.Visible = false;
+            // 
+            // btnInBienLai
+            // 
+            btnInBienLai.Location = new Point(705, 320);
+            btnInBienLai.Margin = new Padding(3, 2, 3, 2);
+            btnInBienLai.Name = "btnInBienLai";
+            btnInBienLai.Size = new Size(82, 22);
+            btnInBienLai.TabIndex = 6;
+            btnInBienLai.Text = "In Biên Lai";
+            btnInBienLai.UseVisualStyleBackColor = true;
+            btnInBienLai.Click += btnInBienLai_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -207,5 +235,8 @@
         private Button btnXuatBaoCao;
         private Button btnXuatExcel;
         private Button btnChotLuong;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private PrintPreviewDialog printPreviewDialog1;
+        private Button btnInBienLai;
     }
 }
