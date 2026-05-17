@@ -48,6 +48,8 @@
             btnSua = new Button();
             btnXoa = new Button();
             errorProvider1 = new ErrorProvider(components);
+            label7 = new Label();
+            txtEmail = new TextBox();
             ((System.ComponentModel.ISupportInitialize)picAvatar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvNhanVien).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numLuongCoBan).BeginInit();
@@ -222,11 +224,30 @@
             // 
             errorProvider1.ContainerControl = this;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.Location = new Point(67, 143);
+            label7.Name = "label7";
+            label7.Size = new Size(39, 17);
+            label7.TabIndex = 18;
+            label7.Text = "Email";
+            // 
+            // txtEmail
+            // 
+            txtEmail.Location = new Point(162, 137);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(180, 23);
+            txtEmail.TabIndex = 19;
+            // 
             // QuanLiNhanSu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(txtEmail);
+            Controls.Add(label7);
             Controls.Add(btnXoa);
             Controls.Add(btnSua);
             Controls.Add(btnThem);
@@ -278,5 +299,7 @@
         private Button btnSua;
         private Button btnXoa;
         private ErrorProvider errorProvider1;
+        private Label label7;
+        private TextBox txtEmail;
     }
 }

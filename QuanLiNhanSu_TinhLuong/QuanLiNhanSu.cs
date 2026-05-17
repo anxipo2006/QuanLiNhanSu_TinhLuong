@@ -85,54 +85,80 @@ namespace QuanLiNhanSu_TinhLuong
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            // --- NHIỆM VỤ 3: BẮT LỖI BẰNG ERRORPROVIDER ---
+            // Bước 1: Bắt lỗi nhập liệu bằng ErrorProvider (Nhiệm vụ 3)
             errorProvider1.Clear();
             bool hopLe = true;
 
             if (string.IsNullOrWhiteSpace(txtHoTen.Text))
             {
-                errorProvider1.SetError(txtHoTen, "Họ tên không được để trống!");
+                errorProvider1.SetError(txtHoTen, "Họ tên không được trống!");
                 hopLe = false;
             }
 
-            if (numLuongCoBan.Value <= 0)
+            // Nếu trên giao diện có ô txtEmail thì bắt lỗi rỗng luôn
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
             {
-                errorProvider1.SetError(numLuongCoBan, "Lương phải lớn hơn 0!");
+                errorProvider1.SetError(txtEmail, "Email không được trống!");
                 hopLe = false;
             }
 
-            if (!hopLe) return;
+            if (!hopLe) return; // Có lỗi thì dừng lại, không lưu
 
-            // --- NHIỆM VỤ 4: CHỐNG VĂNG BẰNG TRY...CATCH ---
+            // Bước 2: Chạy luồng lưu dữ liệu và gửi mail liên hoàn (Nhiệm vụ 4)
             try
             {
-                using (var context = new QuanlynhansuContext())
+                using (var context = new QuanLiNhanSu_TinhLuong.Data.QuanlynhansuContext())
                 {
-                    var nvMoi = new Nhanvien
+                    // 2.1. Tạo và thêm Nhân viên mới vào DB (Đồng bộ đúng theo Model thực tế của ba)
+                    var nvMoi = new QuanLiNhanSu_TinhLuong.Models.Nhanvien
                     {
-                        HoTen = txtHoTen.Text,
-                        Sdt = txtSdt.Text,
-                        DiaChi = txtDiaChi.Text,
-                        LuongCoBan = numLuongCoBan.Value,
+                        HoTen = txtHoTen.Text.Trim(),
+                        Email = txtEmail.Text.Trim(),
+                        LuongCoBan = numLuongCoBan.Value,    // Lấy giá trị từ ô numeric lương của ba
                         MaPb = cboPhongBan.SelectedValue != null ? (int?)cboPhongBan.SelectedValue : null,
-                        MaCv = cboChucVu.SelectedValue != null ? (int?)cboChucVu.SelectedValue : null,
-                        // Lưu tên file ảnh vào Database (Nhiệm vụ 2)
-                        // Ghi chú: Nếu bảng Nhanvien của bạn chưa có cột Avatar thì hãy bỏ dòng dưới
-                        // Avatar = tenFileAvatarMoi 
+                        MaCv = cboChucVu.SelectedValue != null ? (int?)cboChucVu.SelectedValue : null
                     };
 
                     context.Nhanviens.Add(nvMoi);
-                    context.SaveChanges();
+                    context.SaveChanges(); // Lệnh này giúp MySQL sinh ra MaNV tự động
 
-                    MessageBox.Show("Thêm nhân viên thành công!");
+                    // 2.2. TỰ ĐỘNG SINH TÀI KHOẢN TƯƠNG ỨNG CHO NHÂN VIÊN MỚI
+                    var tkMoi = new QuanLiNhanSu_TinhLuong.Models.Account
+                    {
+                        Username = nvMoi.Email,             // Lấy Email làm tên đăng nhập
+                        Password = "123456",                // Mật khẩu mặc định ban đầu
+                        DisplayName = nvMoi.HoTen,          // Tên hiển thị là tên nhân viên
+                        Role = "NhanVien"                   // Mặc định quyền là Nhân viên
+                    };
+
+                    context.Accounts.Add(tkMoi);
+                    context.SaveChanges(); // Lưu tài khoản vào bảng Account
+
+                    // 2.3. TẠO FILE ĐÍNH KÈM VÀ GỌI EMAIL SERVICE ĐỂ GỬI MAIL
+                    string pathHuongDan = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "HuongDanHeThong.txt");
+                    System.IO.File.WriteAllText(pathHuongDan, "Chao mung ban den voi cong ty. Tai khoan cua ban la: " + tkMoi.Username + " | Mat khau: 123456");
+
+                    // Khởi tạo tầng dịch vụ email của An
+                    QuanLiNhanSu_TinhLuong.Services.EmailService emailService = new QuanLiNhanSu_TinhLuong.Services.EmailService();
+
+                    // CHUẨN NÈ: Truyền đúng 4 tham số như hàm GuiEmailKemFile yêu cầu
+                    string tieuDeMail = "Thong Bao Cap Tai Khoan Nhan Vien Moi";
+                    string noiDungMail = $"Chao mung {nvMoi.HoTen} tham gia vao cong ty. Thong tin tai khoan he thong cua ban duoc gui trong file dinh kem.";
+
+                    emailService.GuiEmailKemFile(nvMoi.Email, tieuDeMail, noiDungMail, pathHuongDan);
+
+                    MessageBox.Show("Thêm nhân viên và cấp tài khoản tự động thành công! Đã gửi email kích hoạt.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Lưu xong load lại bảng và đóng form cho chuyên nghiệp
                     LoadDuLieu();
-                    tenFileAvatarMoi = ""; // Reset biến sau khi lưu
+                    this.Close();
                 }
             }
             catch (Exception ex)
             {
+                // Ghi log lỗi tự động bằng ErrorLogger tập trung của An
                 QuanLiNhanSu_TinhLuong.Services.ErrorLogger.WriteLog(ex);
-                MessageBox.Show("Lỗi hệ thống! Đã ghi log vào log.txt", "Lỗi");
+                MessageBox.Show("Lỗi hệ thống khi tạo nhân sự. Chi tiết đã được ghi vào log.txt!", "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
