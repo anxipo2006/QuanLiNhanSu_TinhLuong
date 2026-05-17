@@ -8,6 +8,8 @@ namespace QuanLiNhanSu_TinhLuong
         public FrmNhanVien()
         {
             InitializeComponent();
+            GunaUiStyler.SetupGunaUI(this);
+            ThemeManager.ApplyModernTheme(this);
         }
     }
 }

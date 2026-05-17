@@ -11,6 +11,10 @@ namespace QuanLiNhanSu_TinhLuong
         public FrmChamCong()
         {
             InitializeComponent();
+            // Apply shared Guna styling and then additional form-specific tweaks
+            GunaUiStyler.SetupGunaUI(this);
+            ThemeManager.ApplyModernTheme(this);
+            SetupModernUI();
         }
 
         public void SetupModernUI()

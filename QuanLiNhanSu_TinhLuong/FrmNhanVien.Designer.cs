@@ -28,60 +28,136 @@ namespace QuanLiNhanSu_TinhLuong
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            splitContainer1 = new SplitContainer();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNhanVien));
+            guna2PanelSidebar = new Guna.UI2.WinForms.Guna2Panel();
             treeView1 = new TreeView();
-            dgvNhanVien = new DataGridView();
+            guna2PanelContent = new Guna.UI2.WinForms.Guna2Panel();
+            dgvNhanVien = new Guna.UI2.WinForms.Guna2DataGridView();
+            guna2PanelSidebar.SuspendLayout();
+            guna2PanelContent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvNhanVien).BeginInit();
             SuspendLayout();
             // 
-            // splitContainer1
+            // guna2PanelSidebar
             // 
-            splitContainer1.Dock = DockStyle.Fill;
-            splitContainer1.Location = new System.Drawing.Point(0, 0);
-            splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            splitContainer1.Panel1.Controls.Add(treeView1);
-            // 
-            // splitContainer1.Panel2
-            // 
-            splitContainer1.Panel2.Controls.Add(dgvNhanVien);
-            splitContainer1.Size = new System.Drawing.Size(800, 450);
-            splitContainer1.SplitterDistance = 250;
-            splitContainer1.TabIndex = 0;
+            guna2PanelSidebar.Controls.Add(treeView1);
+            guna2PanelSidebar.CustomizableEdges = customizableEdges1;
+            guna2PanelSidebar.Dock = DockStyle.Left;
+            guna2PanelSidebar.FillColor = Color.FromArgb(37, 99, 235);
+            guna2PanelSidebar.Location = new Point(0, 0);
+            guna2PanelSidebar.Margin = new Padding(3, 4, 3, 4);
+            guna2PanelSidebar.Name = "guna2PanelSidebar";
+            guna2PanelSidebar.Padding = new Padding(14, 16, 14, 16);
+            guna2PanelSidebar.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            guna2PanelSidebar.Size = new Size(297, 600);
+            guna2PanelSidebar.TabIndex = 1;
             // 
             // treeView1
             // 
             treeView1.Dock = DockStyle.Fill;
-            treeView1.Location = new System.Drawing.Point(0, 0);
+            treeView1.ForeColor = Color.White;
+            treeView1.Location = new Point(14, 16);
+            treeView1.Margin = new Padding(3, 4, 3, 4);
             treeView1.Name = "treeView1";
-            treeView1.Size = new System.Drawing.Size(250, 450);
+            treeView1.Size = new Size(269, 568);
             treeView1.TabIndex = 0;
+            // 
+            // guna2PanelContent
+            // 
+            guna2PanelContent.Controls.Add(dgvNhanVien);
+            guna2PanelContent.CustomizableEdges = customizableEdges3;
+            guna2PanelContent.Dock = DockStyle.Fill;
+            guna2PanelContent.FillColor = Color.White;
+            guna2PanelContent.Location = new Point(297, 0);
+            guna2PanelContent.Margin = new Padding(3, 4, 3, 4);
+            guna2PanelContent.Name = "guna2PanelContent";
+            guna2PanelContent.Padding = new Padding(18, 21, 18, 21);
+            guna2PanelContent.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            guna2PanelContent.Size = new Size(617, 600);
+            guna2PanelContent.TabIndex = 0;
             // 
             // dgvNhanVien
             // 
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dgvNhanVien.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(37, 99, 235);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvNhanVien.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgvNhanVien.ColumnHeadersHeight = 29;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvNhanVien.DefaultCellStyle = dataGridViewCellStyle3;
             dgvNhanVien.Dock = DockStyle.Fill;
-            dgvNhanVien.Location = new System.Drawing.Point(0, 0);
+            dgvNhanVien.GridColor = Color.FromArgb(226, 232, 240);
+            dgvNhanVien.Location = new Point(18, 21);
+            dgvNhanVien.Margin = new Padding(3, 4, 3, 4);
             dgvNhanVien.Name = "dgvNhanVien";
-            dgvNhanVien.Size = new System.Drawing.Size(546, 450);
+            dgvNhanVien.RowHeadersVisible = false;
+            dgvNhanVien.RowHeadersWidth = 51;
+            dgvNhanVien.RowTemplate.Height = 40;
+            dgvNhanVien.Size = new Size(581, 558);
             dgvNhanVien.TabIndex = 0;
+            dgvNhanVien.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
+            dgvNhanVien.ThemeStyle.AlternatingRowsStyle.Font = null;
+            dgvNhanVien.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty;
+            dgvNhanVien.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.Empty;
+            dgvNhanVien.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.Empty;
+            dgvNhanVien.ThemeStyle.BackColor = Color.White;
+            dgvNhanVien.ThemeStyle.GridColor = Color.FromArgb(226, 232, 240);
+            dgvNhanVien.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(37, 99, 235);
+            dgvNhanVien.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvNhanVien.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            dgvNhanVien.ThemeStyle.HeaderStyle.ForeColor = Color.White;
+            dgvNhanVien.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvNhanVien.ThemeStyle.HeaderStyle.Height = 29;
+            dgvNhanVien.ThemeStyle.ReadOnly = false;
+            dgvNhanVien.ThemeStyle.RowsStyle.BackColor = Color.White;
+            dgvNhanVien.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvNhanVien.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
+            dgvNhanVien.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
+            dgvNhanVien.ThemeStyle.RowsStyle.Height = 40;
+            dgvNhanVien.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dgvNhanVien.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             // 
             // FrmNhanVien
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(800, 450);
-            Controls.Add(splitContainer1);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            ClientSize = new Size(914, 600);
+            Controls.Add(guna2PanelContent);
+            Controls.Add(guna2PanelSidebar);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "FrmNhanVien";
             Text = "FrmNhanVien";
+            guna2PanelSidebar.ResumeLayout(false);
+            guna2PanelContent.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvNhanVien).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private SplitContainer splitContainer1;
+        private Guna.UI2.WinForms.Guna2Panel guna2PanelSidebar;
+        private Guna.UI2.WinForms.Guna2Panel guna2PanelContent;
         private TreeView treeView1;
-        private DataGridView dgvNhanVien;
+        private Guna.UI2.WinForms.Guna2DataGridView dgvNhanVien;
     }
 }

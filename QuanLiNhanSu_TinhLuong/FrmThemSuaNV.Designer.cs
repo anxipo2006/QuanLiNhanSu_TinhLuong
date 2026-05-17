@@ -20,16 +20,16 @@ namespace QuanLiNhanSu_TinhLuong
             components = new System.ComponentModel.Container();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            picAvatar = new PictureBox();
-            btnChonAnh = new Button();
-            txtName = new TextBox();
-            dtpBirth = new DateTimePicker();
-            cboPhongBan = new ComboBox();
-            cboChucVu = new ComboBox();
+            picAvatar = new Guna.UI2.WinForms.Guna2PictureBox();
+            btnChonAnh = new Guna.UI2.WinForms.Guna2Button();
+            txtName = new Guna.UI2.WinForms.Guna2TextBox();
+            dtpBirth = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            cboPhongBan = new Guna.UI2.WinForms.Guna2ComboBox();
+            cboChucVu = new Guna.UI2.WinForms.Guna2ComboBox();
             tabPage2 = new TabPage();
-            txtLuong = new TextBox();
-            txtSoHopDong = new TextBox();
-            dtpStart = new DateTimePicker();
+            txtLuong = new Guna.UI2.WinForms.Guna2TextBox();
+            txtSoHopDong = new Guna.UI2.WinForms.Guna2TextBox();
+            dtpStart = new Guna.UI2.WinForms.Guna2DateTimePicker();
             toolTip1 = new ToolTip(components);
 
             tabControl1.SuspendLayout();
@@ -71,15 +71,19 @@ namespace QuanLiNhanSu_TinhLuong
             picAvatar.Size = new System.Drawing.Size(120, 140);
             picAvatar.TabIndex = 0;
             picAvatar.TabStop = false;
+            picAvatar.BorderRadius = 10;
+            picAvatar.SizeMode = PictureBoxSizeMode.Zoom;
             // 
             // btnChonAnh
             // 
             btnChonAnh.Location = new System.Drawing.Point(16, 166);
             btnChonAnh.Name = "btnChonAnh";
-            btnChonAnh.Size = new System.Drawing.Size(120, 32);
+            btnChonAnh.Size = new System.Drawing.Size(120, 36);
             btnChonAnh.TabIndex = 1;
             btnChonAnh.Text = "Ch?n ?nh";
-            btnChonAnh.UseVisualStyleBackColor = true;
+            btnChonAnh.BorderRadius = 10;
+            btnChonAnh.FillColor = Color.White;
+            btnChonAnh.ForeColor = ColorTranslator.FromHtml("#2563EB");
             toolTip1.SetToolTip(btnChonAnh, "Ch?n ?nh ??i di?n cho nhân viên");
             // 
             // txtName
@@ -87,29 +91,37 @@ namespace QuanLiNhanSu_TinhLuong
             txtName.Location = new System.Drawing.Point(160, 24);
             txtName.Name = "txtName";
             txtName.PlaceholderText = "H? và tên";
-            txtName.Size = new System.Drawing.Size(360, 23);
+            txtName.Size = new System.Drawing.Size(360, 36);
             txtName.TabIndex = 2;
+            txtName.BorderRadius = 8;
+            txtName.BorderColor = ColorTranslator.FromHtml("#E2E8F0");
             // 
             // dtpBirth
             // 
             dtpBirth.Location = new System.Drawing.Point(160, 64);
             dtpBirth.Name = "dtpBirth";
-            dtpBirth.Size = new System.Drawing.Size(200, 23);
+            dtpBirth.Size = new System.Drawing.Size(200, 36);
             dtpBirth.TabIndex = 3;
+            dtpBirth.BorderRadius = 8;
+            dtpBirth.BorderColor = ColorTranslator.FromHtml("#E2E8F0");
             // 
             // cboPhongBan
             // 
             cboPhongBan.Location = new System.Drawing.Point(160, 104);
             cboPhongBan.Name = "cboPhongBan";
-            cboPhongBan.Size = new System.Drawing.Size(200, 23);
+            cboPhongBan.Size = new System.Drawing.Size(200, 36);
             cboPhongBan.TabIndex = 4;
+            cboPhongBan.BorderRadius = 8;
+            cboPhongBan.BorderColor = ColorTranslator.FromHtml("#E2E8F0");
             // 
             // cboChucVu
             // 
             cboChucVu.Location = new System.Drawing.Point(160, 144);
             cboChucVu.Name = "cboChucVu";
-            cboChucVu.Size = new System.Drawing.Size(200, 23);
+            cboChucVu.Size = new System.Drawing.Size(200, 36);
             cboChucVu.TabIndex = 5;
+            cboChucVu.BorderRadius = 8;
+            cboChucVu.BorderColor = ColorTranslator.FromHtml("#E2E8F0");
             // 
             // tabPage2
             // 
@@ -128,23 +140,29 @@ namespace QuanLiNhanSu_TinhLuong
             txtLuong.Location = new System.Drawing.Point(20, 24);
             txtLuong.Name = "txtLuong";
             txtLuong.PlaceholderText = "L??ng c? b?n";
-            txtLuong.Size = new System.Drawing.Size(200, 23);
+            txtLuong.Size = new System.Drawing.Size(200, 36);
             txtLuong.TabIndex = 0;
+            txtLuong.BorderRadius = 8;
+            txtLuong.BorderColor = ColorTranslator.FromHtml("#E2E8F0");
             // 
             // txtSoHopDong
             // 
             txtSoHopDong.Location = new System.Drawing.Point(20, 64);
             txtSoHopDong.Name = "txtSoHopDong";
             txtSoHopDong.PlaceholderText = "S? h?p ??ng";
-            txtSoHopDong.Size = new System.Drawing.Size(200, 23);
+            txtSoHopDong.Size = new System.Drawing.Size(200, 36);
             txtSoHopDong.TabIndex = 1;
+            txtSoHopDong.BorderRadius = 8;
+            txtSoHopDong.BorderColor = ColorTranslator.FromHtml("#E2E8F0");
             // 
             // dtpStart
             // 
             dtpStart.Location = new System.Drawing.Point(20, 104);
             dtpStart.Name = "dtpStart";
-            dtpStart.Size = new System.Drawing.Size(200, 23);
+            dtpStart.Size = new System.Drawing.Size(200, 36);
             dtpStart.TabIndex = 2;
+            dtpStart.BorderRadius = 8;
+            dtpStart.BorderColor = ColorTranslator.FromHtml("#E2E8F0");
             // 
             // FrmThemSuaNV
             // 
@@ -168,15 +186,15 @@ namespace QuanLiNhanSu_TinhLuong
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
-        private PictureBox picAvatar;
-        private Button btnChonAnh;
-        private TextBox txtName;
-        private DateTimePicker dtpBirth;
-        private ComboBox cboPhongBan;
-        private ComboBox cboChucVu;
-        private TextBox txtLuong;
-        private TextBox txtSoHopDong;
-        private DateTimePicker dtpStart;
+        private Guna.UI2.WinForms.Guna2PictureBox picAvatar;
+        private Guna.UI2.WinForms.Guna2Button btnChonAnh;
+        private Guna.UI2.WinForms.Guna2TextBox txtName;
+        private Guna.UI2.WinForms.Guna2DateTimePicker dtpBirth;
+        private Guna.UI2.WinForms.Guna2ComboBox cboPhongBan;
+        private Guna.UI2.WinForms.Guna2ComboBox cboChucVu;
+        private Guna.UI2.WinForms.Guna2TextBox txtLuong;
+        private Guna.UI2.WinForms.Guna2TextBox txtSoHopDong;
+        private Guna.UI2.WinForms.Guna2DateTimePicker dtpStart;
         private ToolTip toolTip1;
     }
 }

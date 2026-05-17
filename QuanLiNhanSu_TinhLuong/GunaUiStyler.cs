@@ -285,8 +285,8 @@ namespace QuanLiNhanSu_TinhLuong
             num.BorderColor = BorderGray;
             num.FillColor = CardWhite;
             num.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular);
-            num.FocusedColor = PrimaryBlue;
-            num.HoverState.BorderColor = ControlPaint.Dark(BorderGray);
+            // Guna2NumericUpDown does not expose FocusedColor or HoverState in this version
+            // Leave default focus/hover appearance
         }
 
         public static void StyleStatusButton(Guna2Button btn, string type)
