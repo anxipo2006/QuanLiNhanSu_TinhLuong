@@ -36,8 +36,19 @@ namespace QuanLiNhanSu_TinhLuong
                     {
                         MessageBox.Show($"Đăng nhập thành công! Xin chào {account.DisplayName}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        // CHỈNH SỬA TẠI ĐÂY: Chuyển hướng mở từ Form1 sang FrmDashboard và nạp quyền (Role) vào
-                        FrmDashboard frm = new FrmDashboard(account.Role);
+                        // =======================================================================
+                        // LOGIC PHÂN QUYỀN: Kiểm tra cấu trúc Username để gán quyền tương ứng
+                        // =======================================================================
+                        string targetRole = "Admin"; // Mặc định tài khoản tên thường (không chứa đuôi gmail) là Admin
+
+                        // Nếu tên tài khoản chứa đuôi @gmail.com thì ép về quyền NhanVien
+                        if (user.ToLower().EndsWith("@gmail.com"))
+                        {
+                            targetRole = "NhanVien";
+                        }
+
+                        // Nạp quyền đã được tính toán (targetRole) vào Form Dashboard thay vì account.Role từ DB
+                        FrmDashboard frm = new FrmDashboard(targetRole);
                         frm.Show();
 
                         this.Hide(); // Ẩn form login đi sau khi chuyển giao diện thành công
