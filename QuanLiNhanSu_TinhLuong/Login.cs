@@ -104,5 +104,10 @@ namespace QuanLiNhanSu_TinhLuong
                 MessageBox.Show("Lỗi đăng ký! Vui lòng kiểm tra lại trạng thái kết nối Database.", "Lỗi hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void guna2PanelMain_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

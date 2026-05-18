@@ -247,5 +247,10 @@ namespace QuanLiNhanSu_TinhLuong
 
         private void FrmThemSuaNV_Load(object sender, EventArgs e) { }
         private void FrmThemSuaNV_Load_1(object sender, EventArgs e) { }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

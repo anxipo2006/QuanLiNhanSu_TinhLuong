@@ -5,21 +5,38 @@ namespace QuanLiNhanSu_TinhLuong
 {
     public partial class FrmDashboard : Form
     {
-        // 1. Khai báo biến
+        // Biến toàn cục lưu quyền của người dùng sau khi đăng nhập thành công
         private string quyenNguoiDung = "";
 
-        // 2. Nhét string role vào đây
+        // Constructor nhận tham số Role truyền sang từ Form Login
         public FrmDashboard(string role)
         {
             InitializeComponent();
-            quyenNguoiDung = role;
 
-            // HÀN CHẾT DÂY SỰ KIỆN CHO NÚT BẢNG LƯƠNG (Chống đứt dây ngoài Designer)
-            // Lưu ý: Đảm bảo nút ngoài giao diện của bạn tên là btnTinhLuong
+
+            // Gán quyền được nạp từ màn hình đăng nhập vào biến nội bộ
+            quyenNguoiDung = role != null ? role.Trim() : "";
+
+            // HÀN CHẾT DÂY SỰ KIỆN CHO NÚT BẢNG LƯƠNG (Tránh đứt liên kết ngoài Designer)
             if (btnTinhLuong != null)
             {
                 btnTinhLuong.Click -= btnTinhLuong_Click;
                 btnTinhLuong.Click += btnTinhLuong_Click;
+            }
+        }
+
+        private void FrmDashboard_Load(object sender, EventArgs e)
+        {
+            // THỰC HIỆN PHÂN QUYỀN GIAO DIỆN KHI FORM ĐƯỢC MỞ LÊN
+            if (quyenNguoiDung == "NhanVien")
+            {
+                // Cách 1: Vô hiệu hóa nút (Nút mờ đi, không click được nhưng vẫn thấy cấu trúc hệ thống)
+                if (btnQuanLyNhanVien != null) btnQuanLyNhanVien.Enabled = false;
+                if (btnTinhLuong != null) btnTinhLuong.Enabled = false;
+
+                // Cách 2: Nếu bạn muốn ẩn hoàn toàn 2 nút này đi, hãy mở comment 2 dòng dưới:
+                // if (btnQuanLyNhanVien != null) btnQuanLyNhanVien.Visible = false;
+                // if (btnTinhLuong != null) btnTinhLuong.Visible = false;
             }
         }
 
@@ -39,14 +56,9 @@ namespace QuanLiNhanSu_TinhLuong
 
         private void btnTinhLuong_Click(object sender, EventArgs e)
         {
-            // GỌI FORM BẢNG LƯƠNG MỚI CHUẨN XỊN (Đã bỏ dấu //)
+            // Gọi form FrmBangLuong
             FrmBangLuong frm = new FrmBangLuong();
             frm.ShowDialog();
-        }
-
-        private void FrmDashboard_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -47,9 +47,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 22F, FontStyle.Bold);
             label1.ForeColor = Color.FromArgb(17, 24, 39);
-            label1.Location = new Point(46, 40);
+            label1.Location = new Point(40, 30);
             label1.Name = "label1";
-            label1.Size = new Size(218, 50);
+            label1.Size = new Size(178, 41);
             label1.TabIndex = 0;
             label1.Text = "Đăng Nhập";
             // 
@@ -58,9 +58,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10F);
             label2.ForeColor = Color.FromArgb(31, 41, 55);
-            label2.Location = new Point(48, 147);
+            label2.Location = new Point(42, 110);
             label2.Name = "label2";
-            label2.Size = new Size(87, 23);
+            label2.Size = new Size(71, 19);
             label2.TabIndex = 2;
             label2.Text = "Username";
             // 
@@ -79,14 +79,14 @@
             txtUsername.Font = new Font("Segoe UI", 10F);
             txtUsername.ForeColor = Color.FromArgb(17, 24, 39);
             txtUsername.HoverState.BorderColor = Color.FromArgb(226, 232, 240);
-            txtUsername.Location = new Point(48, 180);
-            txtUsername.Margin = new Padding(3, 5, 3, 5);
+            txtUsername.Location = new Point(42, 135);
+            txtUsername.Margin = new Padding(3, 4, 3, 4);
             txtUsername.Name = "txtUsername";
             txtUsername.PlaceholderForeColor = Color.FromArgb(156, 163, 175);
             txtUsername.PlaceholderText = "Nhập tên đăng nhập";
             txtUsername.SelectedText = "";
             txtUsername.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            txtUsername.Size = new Size(453, 56);
+            txtUsername.Size = new Size(396, 42);
             txtUsername.TabIndex = 3;
             // 
             // txtPassword
@@ -104,15 +104,15 @@
             txtPassword.Font = new Font("Segoe UI", 10F);
             txtPassword.ForeColor = Color.FromArgb(17, 24, 39);
             txtPassword.HoverState.BorderColor = Color.FromArgb(226, 232, 240);
-            txtPassword.Location = new Point(48, 287);
-            txtPassword.Margin = new Padding(3, 5, 3, 5);
+            txtPassword.Location = new Point(42, 215);
+            txtPassword.Margin = new Padding(3, 4, 3, 4);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '●';
             txtPassword.PlaceholderForeColor = Color.FromArgb(156, 163, 175);
             txtPassword.PlaceholderText = "Nhập mật khẩu";
             txtPassword.SelectedText = "";
             txtPassword.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            txtPassword.Size = new Size(453, 56);
+            txtPassword.Size = new Size(396, 42);
             txtPassword.TabIndex = 5;
             // 
             // label3
@@ -120,9 +120,9 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10F);
             label3.ForeColor = Color.FromArgb(31, 41, 55);
-            label3.Location = new Point(48, 253);
+            label3.Location = new Point(42, 190);
             label3.Name = "label3";
-            label3.Size = new Size(80, 23);
+            label3.Size = new Size(67, 19);
             label3.TabIndex = 4;
             label3.Text = "Password";
             // 
@@ -134,11 +134,10 @@
             btnDangNhap.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnDangNhap.ForeColor = Color.White;
             btnDangNhap.HoverState.FillColor = Color.FromArgb(29, 78, 216);
-            btnDangNhap.Location = new Point(48, 367);
-            btnDangNhap.Margin = new Padding(3, 4, 3, 4);
+            btnDangNhap.Location = new Point(42, 275);
             btnDangNhap.Name = "btnDangNhap";
             btnDangNhap.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            btnDangNhap.Size = new Size(453, 59);
+            btnDangNhap.Size = new Size(396, 44);
             btnDangNhap.TabIndex = 6;
             btnDangNhap.Text = "Đăng Nhập";
             btnDangNhap.Click += btnDangNhap_Click;
@@ -153,11 +152,11 @@
             guna2PanelMain.Dock = DockStyle.Fill;
             guna2PanelMain.FillColor = Color.FromArgb(245, 247, 251);
             guna2PanelMain.Location = new Point(0, 0);
-            guna2PanelMain.Margin = new Padding(3, 4, 3, 4);
             guna2PanelMain.Name = "guna2PanelMain";
             guna2PanelMain.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            guna2PanelMain.Size = new Size(1143, 800);
+            guna2PanelMain.Size = new Size(1000, 600);
             guna2PanelMain.TabIndex = 0;
+            guna2PanelMain.Paint += guna2PanelMain_Paint;
             // 
             // guna2PanelCard
             // 
@@ -172,13 +171,12 @@
             guna2PanelCard.Controls.Add(btnDangNhap);
             guna2PanelCard.CustomizableEdges = customizableEdges7;
             guna2PanelCard.FillColor = Color.White;
-            guna2PanelCard.Location = new Point(297, 140);
-            guna2PanelCard.Margin = new Padding(3, 4, 3, 4);
+            guna2PanelCard.Location = new Point(260, 105);
             guna2PanelCard.Name = "guna2PanelCard";
             guna2PanelCard.ShadowDecoration.BorderRadius = 18;
             guna2PanelCard.ShadowDecoration.CustomizableEdges = customizableEdges8;
             guna2PanelCard.ShadowDecoration.Enabled = true;
-            guna2PanelCard.Size = new Size(650, 560);
+            guna2PanelCard.Size = new Size(569, 420);
             guna2PanelCard.TabIndex = 0;
             // 
             // lblSubtitle
@@ -186,9 +184,9 @@
             lblSubtitle.AutoSize = true;
             lblSubtitle.Font = new Font("Segoe UI", 9F);
             lblSubtitle.ForeColor = Color.FromArgb(107, 114, 128);
-            lblSubtitle.Location = new Point(48, 104);
+            lblSubtitle.Location = new Point(42, 78);
             lblSubtitle.Name = "lblSubtitle";
-            lblSubtitle.Size = new Size(334, 20);
+            lblSubtitle.Size = new Size(267, 15);
             lblSubtitle.TabIndex = 1;
             lblSubtitle.Text = "Vui lòng đăng nhập để tiếp tục sử dụng hệ thống";
             // 
@@ -205,13 +203,12 @@
             // 
             // Login
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 247, 251);
-            ClientSize = new Size(1143, 800);
+            ClientSize = new Size(1000, 600);
             Controls.Add(guna2PanelMain);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";

@@ -74,10 +74,9 @@
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
-            tabControl1.Margin = new Padding(3, 4, 3, 4);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(686, 533);
+            tabControl1.Size = new Size(600, 400);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -96,14 +95,14 @@
             tabPage1.Controls.Add(cboPhongBan);
             tabPage1.Controls.Add(cboChucVu);
             tabPage1.ForeColor = SystemColors.ControlLightLight;
-            tabPage1.Location = new Point(4, 29);
-            tabPage1.Margin = new Padding(3, 4, 3, 4);
+            tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3, 4, 3, 4);
-            tabPage1.Size = new Size(678, 500);
+            tabPage1.Padding = new Padding(3, 3, 3, 3);
+            tabPage1.Size = new Size(592, 372);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Thông tin cá nhân";
             tabPage1.UseVisualStyleBackColor = true;
+            tabPage1.Click += tabPage1_Click;
             // 
             // txtEmail
             // 
@@ -116,13 +115,12 @@
             txtEmail.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtEmail.Font = new Font("Segoe UI", 9F);
             txtEmail.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtEmail.Location = new Point(174, 250);
-            txtEmail.Margin = new Padding(3, 4, 3, 4);
+            txtEmail.Location = new Point(152, 188);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "Email";
             txtEmail.SelectedText = "";
             txtEmail.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            txtEmail.Size = new Size(228, 40);
+            txtEmail.Size = new Size(200, 30);
             txtEmail.TabIndex = 12;
             // 
             // rdoNu
@@ -133,9 +131,10 @@
             rdoNu.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
             rdoNu.CheckedState.InnerColor = Color.White;
             rdoNu.CheckedState.InnerOffset = -4;
-            rdoNu.Location = new Point(520, 85);
+            rdoNu.Location = new Point(455, 64);
+            rdoNu.Margin = new Padding(3, 2, 3, 2);
             rdoNu.Name = "rdoNu";
-            rdoNu.Size = new Size(50, 24);
+            rdoNu.Size = new Size(41, 19);
             rdoNu.TabIndex = 11;
             rdoNu.Text = "Nữ";
             rdoNu.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
@@ -151,9 +150,10 @@
             rdoNam.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
             rdoNam.CheckedState.InnerColor = Color.White;
             rdoNam.CheckedState.InnerOffset = -4;
-            rdoNam.Location = new Point(452, 85);
+            rdoNam.Location = new Point(396, 64);
+            rdoNam.Margin = new Padding(3, 2, 3, 2);
             rdoNam.Name = "rdoNam";
-            rdoNam.Size = new Size(62, 24);
+            rdoNam.Size = new Size(51, 19);
             rdoNam.TabIndex = 10;
             rdoNam.Text = "Nam";
             rdoNam.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
@@ -172,13 +172,12 @@
             txtDiaChi.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtDiaChi.Font = new Font("Segoe UI", 9F);
             txtDiaChi.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtDiaChi.Location = new Point(175, 194);
-            txtDiaChi.Margin = new Padding(3, 4, 3, 4);
+            txtDiaChi.Location = new Point(153, 146);
             txtDiaChi.Name = "txtDiaChi";
             txtDiaChi.PlaceholderText = "Địa chỉ";
             txtDiaChi.SelectedText = "";
             txtDiaChi.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            txtDiaChi.Size = new Size(228, 40);
+            txtDiaChi.Size = new Size(200, 30);
             txtDiaChi.TabIndex = 8;
             // 
             // txtSoDienThoai
@@ -192,20 +191,20 @@
             txtSoDienThoai.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtSoDienThoai.Font = new Font("Segoe UI", 9F);
             txtSoDienThoai.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtSoDienThoai.Location = new Point(174, 146);
-            txtSoDienThoai.Margin = new Padding(3, 4, 3, 4);
+            txtSoDienThoai.Location = new Point(152, 110);
             txtSoDienThoai.Name = "txtSoDienThoai";
             txtSoDienThoai.PlaceholderText = "SĐT";
             txtSoDienThoai.SelectedText = "";
             txtSoDienThoai.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            txtSoDienThoai.Size = new Size(228, 40);
+            txtSoDienThoai.Size = new Size(200, 30);
             txtSoDienThoai.TabIndex = 7;
             // 
             // btnLuu
             // 
-            btnLuu.Location = new Point(581, 468);
+            btnLuu.Location = new Point(508, 351);
+            btnLuu.Margin = new Padding(3, 2, 3, 2);
             btnLuu.Name = "btnLuu";
-            btnLuu.Size = new Size(94, 29);
+            btnLuu.Size = new Size(82, 22);
             btnLuu.TabIndex = 6;
             btnLuu.Text = "Lưu";
             btnLuu.UseVisualStyleBackColor = true;
@@ -215,11 +214,10 @@
             picAvatar.BorderRadius = 10;
             picAvatar.CustomizableEdges = customizableEdges7;
             picAvatar.ImageRotate = 0F;
-            picAvatar.Location = new Point(18, 21);
-            picAvatar.Margin = new Padding(3, 4, 3, 4);
+            picAvatar.Location = new Point(16, 16);
             picAvatar.Name = "picAvatar";
             picAvatar.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            picAvatar.Size = new Size(137, 187);
+            picAvatar.Size = new Size(120, 140);
             picAvatar.SizeMode = PictureBoxSizeMode.Zoom;
             picAvatar.TabIndex = 0;
             picAvatar.TabStop = false;
@@ -231,11 +229,10 @@
             btnChonAnh.FillColor = Color.FromArgb(192, 255, 255);
             btnChonAnh.Font = new Font("Segoe UI", 9F);
             btnChonAnh.ForeColor = Color.FromArgb(37, 99, 235);
-            btnChonAnh.Location = new Point(18, 221);
-            btnChonAnh.Margin = new Padding(3, 4, 3, 4);
+            btnChonAnh.Location = new Point(16, 166);
             btnChonAnh.Name = "btnChonAnh";
             btnChonAnh.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            btnChonAnh.Size = new Size(137, 48);
+            btnChonAnh.Size = new Size(120, 36);
             btnChonAnh.TabIndex = 1;
             btnChonAnh.Text = "Chọn Ảnh";
             toolTip1.SetToolTip(btnChonAnh, "Ch?n ?nh ??i di?n cho nhân viên");
@@ -248,13 +245,13 @@
             txtName.CustomizableEdges = customizableEdges11;
             txtName.DefaultText = "";
             txtName.Font = new Font("Segoe UI", 9F);
-            txtName.Location = new Point(174, 21);
-            txtName.Margin = new Padding(3, 5, 3, 5);
+            txtName.Location = new Point(152, 16);
+            txtName.Margin = new Padding(3, 4, 3, 4);
             txtName.Name = "txtName";
             txtName.PlaceholderText = "Họ và tên";
             txtName.SelectedText = "";
             txtName.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            txtName.Size = new Size(411, 48);
+            txtName.Size = new Size(360, 36);
             txtName.TabIndex = 2;
             // 
             // dtpBirth
@@ -265,13 +262,12 @@
             dtpBirth.CustomizableEdges = customizableEdges13;
             dtpBirth.Font = new Font("Segoe UI", 9F);
             dtpBirth.Format = DateTimePickerFormat.Long;
-            dtpBirth.Location = new Point(174, 85);
-            dtpBirth.Margin = new Padding(3, 4, 3, 4);
+            dtpBirth.Location = new Point(152, 64);
             dtpBirth.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             dtpBirth.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             dtpBirth.Name = "dtpBirth";
             dtpBirth.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            dtpBirth.Size = new Size(229, 48);
+            dtpBirth.Size = new Size(200, 36);
             dtpBirth.TabIndex = 3;
             dtpBirth.Value = new DateTime(2026, 5, 17, 18, 1, 16, 357);
             // 
@@ -287,11 +283,10 @@
             cboPhongBan.Font = new Font("Segoe UI", 10F);
             cboPhongBan.ForeColor = Color.FromArgb(68, 88, 112);
             cboPhongBan.ItemHeight = 30;
-            cboPhongBan.Location = new Point(174, 354);
-            cboPhongBan.Margin = new Padding(3, 4, 3, 4);
+            cboPhongBan.Location = new Point(152, 266);
             cboPhongBan.Name = "cboPhongBan";
             cboPhongBan.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            cboPhongBan.Size = new Size(228, 36);
+            cboPhongBan.Size = new Size(200, 36);
             cboPhongBan.TabIndex = 4;
             // 
             // cboChucVu
@@ -306,11 +301,10 @@
             cboChucVu.Font = new Font("Segoe UI", 10F);
             cboChucVu.ForeColor = Color.FromArgb(68, 88, 112);
             cboChucVu.ItemHeight = 30;
-            cboChucVu.Location = new Point(175, 298);
-            cboChucVu.Margin = new Padding(3, 4, 3, 4);
+            cboChucVu.Location = new Point(153, 224);
             cboChucVu.Name = "cboChucVu";
             cboChucVu.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            cboChucVu.Size = new Size(228, 36);
+            cboChucVu.Size = new Size(200, 36);
             cboChucVu.TabIndex = 5;
             // 
             // tabPage2
@@ -318,11 +312,10 @@
             tabPage2.Controls.Add(txtLuong);
             tabPage2.Controls.Add(txtSoHopDong);
             tabPage2.Controls.Add(dtpStart);
-            tabPage2.Location = new Point(4, 29);
-            tabPage2.Margin = new Padding(3, 4, 3, 4);
+            tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3, 4, 3, 4);
-            tabPage2.Size = new Size(678, 500);
+            tabPage2.Padding = new Padding(3, 3, 3, 3);
+            tabPage2.Size = new Size(592, 372);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "H?p ??ng lao ??ng";
             tabPage2.UseVisualStyleBackColor = true;
@@ -334,13 +327,13 @@
             txtLuong.CustomizableEdges = customizableEdges19;
             txtLuong.DefaultText = "";
             txtLuong.Font = new Font("Segoe UI", 9F);
-            txtLuong.Location = new Point(23, 32);
-            txtLuong.Margin = new Padding(3, 5, 3, 5);
+            txtLuong.Location = new Point(20, 24);
+            txtLuong.Margin = new Padding(3, 4, 3, 4);
             txtLuong.Name = "txtLuong";
             txtLuong.PlaceholderText = "L??ng c? b?n";
             txtLuong.SelectedText = "";
             txtLuong.ShadowDecoration.CustomizableEdges = customizableEdges20;
-            txtLuong.Size = new Size(229, 48);
+            txtLuong.Size = new Size(200, 36);
             txtLuong.TabIndex = 0;
             // 
             // txtSoHopDong
@@ -350,13 +343,13 @@
             txtSoHopDong.CustomizableEdges = customizableEdges21;
             txtSoHopDong.DefaultText = "";
             txtSoHopDong.Font = new Font("Segoe UI", 9F);
-            txtSoHopDong.Location = new Point(23, 85);
-            txtSoHopDong.Margin = new Padding(3, 5, 3, 5);
+            txtSoHopDong.Location = new Point(20, 64);
+            txtSoHopDong.Margin = new Padding(3, 4, 3, 4);
             txtSoHopDong.Name = "txtSoHopDong";
             txtSoHopDong.PlaceholderText = "S? h?p ??ng";
             txtSoHopDong.SelectedText = "";
             txtSoHopDong.ShadowDecoration.CustomizableEdges = customizableEdges22;
-            txtSoHopDong.Size = new Size(229, 48);
+            txtSoHopDong.Size = new Size(200, 36);
             txtSoHopDong.TabIndex = 1;
             // 
             // dtpStart
@@ -367,23 +360,21 @@
             dtpStart.CustomizableEdges = customizableEdges23;
             dtpStart.Font = new Font("Segoe UI", 9F);
             dtpStart.Format = DateTimePickerFormat.Long;
-            dtpStart.Location = new Point(23, 139);
-            dtpStart.Margin = new Padding(3, 4, 3, 4);
+            dtpStart.Location = new Point(20, 104);
             dtpStart.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             dtpStart.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             dtpStart.Name = "dtpStart";
             dtpStart.ShadowDecoration.CustomizableEdges = customizableEdges24;
-            dtpStart.Size = new Size(229, 48);
+            dtpStart.Size = new Size(200, 36);
             dtpStart.TabIndex = 2;
             dtpStart.Value = new DateTime(2026, 5, 17, 18, 1, 16, 397);
             // 
             // FrmThemSuaNV
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(686, 533);
+            ClientSize = new Size(600, 400);
             Controls.Add(tabControl1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "FrmThemSuaNV";
             Text = "FrmThemSuaNV";
             tabControl1.ResumeLayout(false);
