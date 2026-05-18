@@ -97,7 +97,7 @@
             tabPage1.ForeColor = SystemColors.ControlLightLight;
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3, 3, 3, 3);
+            tabPage1.Padding = new Padding(3);
             tabPage1.Size = new Size(592, 372);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Thông tin cá nhân";
@@ -201,6 +201,7 @@
             // 
             // btnLuu
             // 
+            btnLuu.ForeColor = SystemColors.ActiveCaptionText;
             btnLuu.Location = new Point(508, 351);
             btnLuu.Margin = new Padding(3, 2, 3, 2);
             btnLuu.Name = "btnLuu";
@@ -314,7 +315,7 @@
             tabPage2.Controls.Add(dtpStart);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3, 3, 3, 3);
+            tabPage2.Padding = new Padding(3);
             tabPage2.Size = new Size(592, 372);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "H?p ??ng lao ??ng";
