@@ -9,7 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EPPlus" Version="8.5.4" />
+    <Compile Remove="Form1.cs" />
+    <Compile Remove="Form1.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Form1.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EPPlus" Version="7.7.3" />
     <PackageReference Include="FontStashSharp.TextShapers.HarfBuzz" Version="1.2.3" />
 	  <PackageReference Include="iTextSharp" Version="5.5.13.5" />
     <PackageReference Include="LiveCharts.WinForms" Version="0.9.7.1" />   

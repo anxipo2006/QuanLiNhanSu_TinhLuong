@@ -299,7 +299,7 @@
             // 
             txtEmail.Location = new Point(162, 137);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(180, 23);
+            txtEmail.Size = new Size(180, 27);
             txtEmail.TabIndex = 19;
             // 
             // QuanLiNhanSu

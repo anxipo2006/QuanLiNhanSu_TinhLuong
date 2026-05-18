@@ -22,20 +22,17 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             label1 = new Label();
             label2 = new Label();
             txtUsername = new Guna.UI2.WinForms.Guna2TextBox();
             txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
             label3 = new Label();
             btnDangNhap = new Guna.UI2.WinForms.Guna2Button();
-            btnDangKy = new Guna.UI2.WinForms.Guna2Button();
             guna2PanelMain = new Guna.UI2.WinForms.Guna2Panel();
             guna2PanelCard = new Guna.UI2.WinForms.Guna2Panel();
             lblSubtitle = new Label();
@@ -146,36 +143,19 @@
             btnDangNhap.Text = "Đăng Nhập";
             btnDangNhap.Click += btnDangNhap_Click;
             // 
-            // btnDangKy
-            // 
-            btnDangKy.BorderRadius = 10;
-            btnDangKy.CustomizableEdges = customizableEdges7;
-            btnDangKy.FillColor = Color.White;
-            btnDangKy.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnDangKy.ForeColor = Color.FromArgb(37, 99, 235);
-            btnDangKy.HoverState.FillColor = Color.FromArgb(242, 247, 255);
-            btnDangKy.Location = new Point(48, 440);
-            btnDangKy.Margin = new Padding(3, 4, 3, 4);
-            btnDangKy.Name = "btnDangKy";
-            btnDangKy.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            btnDangKy.Size = new Size(453, 59);
-            btnDangKy.TabIndex = 7;
-            btnDangKy.Text = "Đăng Ký";
-            btnDangKy.Click += btnDangKy_Click;
-            // 
             // guna2PanelMain
             // 
             guna2PanelMain.BackColor = Color.Transparent;
             guna2PanelMain.BackgroundImage = (Image)resources.GetObject("guna2PanelMain.BackgroundImage");
             guna2PanelMain.BackgroundImageLayout = ImageLayout.Stretch;
             guna2PanelMain.Controls.Add(guna2PanelCard);
-            guna2PanelMain.CustomizableEdges = customizableEdges11;
+            guna2PanelMain.CustomizableEdges = customizableEdges9;
             guna2PanelMain.Dock = DockStyle.Fill;
             guna2PanelMain.FillColor = Color.FromArgb(245, 247, 251);
             guna2PanelMain.Location = new Point(0, 0);
             guna2PanelMain.Margin = new Padding(3, 4, 3, 4);
             guna2PanelMain.Name = "guna2PanelMain";
-            guna2PanelMain.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            guna2PanelMain.ShadowDecoration.CustomizableEdges = customizableEdges10;
             guna2PanelMain.Size = new Size(1143, 800);
             guna2PanelMain.TabIndex = 0;
             // 
@@ -190,14 +170,13 @@
             guna2PanelCard.Controls.Add(label3);
             guna2PanelCard.Controls.Add(txtPassword);
             guna2PanelCard.Controls.Add(btnDangNhap);
-            guna2PanelCard.Controls.Add(btnDangKy);
-            guna2PanelCard.CustomizableEdges = customizableEdges9;
+            guna2PanelCard.CustomizableEdges = customizableEdges7;
             guna2PanelCard.FillColor = Color.White;
             guna2PanelCard.Location = new Point(297, 140);
             guna2PanelCard.Margin = new Padding(3, 4, 3, 4);
             guna2PanelCard.Name = "guna2PanelCard";
             guna2PanelCard.ShadowDecoration.BorderRadius = 18;
-            guna2PanelCard.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            guna2PanelCard.ShadowDecoration.CustomizableEdges = customizableEdges8;
             guna2PanelCard.ShadowDecoration.Enabled = true;
             guna2PanelCard.Size = new Size(650, 560);
             guna2PanelCard.TabIndex = 0;
@@ -251,7 +230,6 @@
         private Guna.UI2.WinForms.Guna2TextBox txtPassword;
         private Label label3;
         private Guna.UI2.WinForms.Guna2Button btnDangNhap;
-        private Guna.UI2.WinForms.Guna2Button btnDangKy;
         private Guna.UI2.WinForms.Guna2Panel guna2PanelMain;
         private Guna.UI2.WinForms.Guna2Panel guna2PanelCard;
         private Label lblSubtitle;

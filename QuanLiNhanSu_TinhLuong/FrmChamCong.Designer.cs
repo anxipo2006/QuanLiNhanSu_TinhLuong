@@ -1,4 +1,4 @@
-namespace QuanLiNhanSu_TinhLuong
+Ôªønamespace QuanLiNhanSu_TinhLuong
 {
     partial class FrmChamCong
     {
@@ -27,6 +27,8 @@ namespace QuanLiNhanSu_TinhLuong
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmChamCong));
             monthCalendar1 = new MonthCalendar();
             dgvChamCong = new Guna.UI2.WinForms.Guna2DataGridView();
@@ -34,16 +36,18 @@ namespace QuanLiNhanSu_TinhLuong
             btnVang = new Guna.UI2.WinForms.Guna2Button();
             btnDiTre = new Guna.UI2.WinForms.Guna2Button();
             toolTip1 = new ToolTip(components);
+            cboNhanVien = new Guna.UI2.WinForms.Guna2ComboBox();
             ((System.ComponentModel.ISupportInitialize)dgvChamCong).BeginInit();
             SuspendLayout();
             // 
             // monthCalendar1
             // 
-            monthCalendar1.Location = new Point(21, 24);
+            monthCalendar1.Location = new Point(19, 44);
             monthCalendar1.Margin = new Padding(10, 12, 10, 12);
             monthCalendar1.MaxSelectionCount = 31;
             monthCalendar1.Name = "monthCalendar1";
             monthCalendar1.TabIndex = 3;
+            monthCalendar1.DateChanged += monthCalendar1_DateChanged;
             // 
             // dgvChamCong
             // 
@@ -105,14 +109,14 @@ namespace QuanLiNhanSu_TinhLuong
             btnCoMat.Font = new Font("Segoe UI", 9F);
             btnCoMat.ForeColor = Color.FromArgb(22, 101, 52);
             btnCoMat.HoverState.FillColor = Color.FromArgb(187, 247, 208);
-            btnCoMat.Location = new Point(296, 33);
+            btnCoMat.Location = new Point(311, 44);
             btnCoMat.Margin = new Padding(3, 4, 3, 4);
             btnCoMat.Name = "btnCoMat";
             btnCoMat.ShadowDecoration.CustomizableEdges = customizableEdges2;
             btnCoMat.Size = new Size(114, 48);
             btnCoMat.TabIndex = 2;
-            btnCoMat.Text = "CÛ m?t";
-            toolTip1.SetToolTip(btnCoMat, "?·nh d?u cÛ m?t cho nh‚n viÍn ch?n");
+            btnCoMat.Text = "C√≥ m·∫∑t";
+            toolTip1.SetToolTip(btnCoMat, "?√°nh d?u c√≥ m?t cho nh√¢n vi√™n ch?n");
             // 
             // btnVang
             // 
@@ -122,14 +126,14 @@ namespace QuanLiNhanSu_TinhLuong
             btnVang.Font = new Font("Segoe UI", 9F);
             btnVang.ForeColor = Color.FromArgb(153, 27, 27);
             btnVang.HoverState.FillColor = Color.FromArgb(254, 202, 202);
-            btnVang.Location = new Point(296, 99);
+            btnVang.Location = new Point(311, 117);
             btnVang.Margin = new Padding(3, 4, 3, 4);
             btnVang.Name = "btnVang";
             btnVang.ShadowDecoration.CustomizableEdges = customizableEdges4;
             btnVang.Size = new Size(114, 48);
             btnVang.TabIndex = 1;
-            btnVang.Text = "V?ng";
-            toolTip1.SetToolTip(btnVang, "?·nh d?u v?ng");
+            btnVang.Text = "V·∫Øng";
+            toolTip1.SetToolTip(btnVang, "?√°nh d?u v?ng");
             // 
             // btnDiTre
             // 
@@ -139,14 +143,31 @@ namespace QuanLiNhanSu_TinhLuong
             btnDiTre.Font = new Font("Segoe UI", 9F);
             btnDiTre.ForeColor = Color.FromArgb(146, 64, 14);
             btnDiTre.HoverState.FillColor = Color.FromArgb(253, 230, 138);
-            btnDiTre.Location = new Point(296, 171);
+            btnDiTre.Location = new Point(311, 182);
             btnDiTre.Margin = new Padding(3, 4, 3, 4);
             btnDiTre.Name = "btnDiTre";
             btnDiTre.ShadowDecoration.CustomizableEdges = customizableEdges6;
             btnDiTre.Size = new Size(114, 48);
             btnDiTre.TabIndex = 0;
-            btnDiTre.Text = "?i tr?";
-            toolTip1.SetToolTip(btnDiTre, "?·nh d?u ?i tr?");
+            btnDiTre.Text = "ƒêi tr·ªÖ";
+            toolTip1.SetToolTip(btnDiTre, "?√°nh d?u ?i tr?");
+            // 
+            // cboNhanVien
+            // 
+            cboNhanVien.BackColor = Color.Transparent;
+            cboNhanVien.CustomizableEdges = customizableEdges7;
+            cboNhanVien.DrawMode = DrawMode.OwnerDrawFixed;
+            cboNhanVien.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboNhanVien.FocusedColor = Color.FromArgb(94, 148, 255);
+            cboNhanVien.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            cboNhanVien.Font = new Font("Segoe UI", 10F);
+            cboNhanVien.ForeColor = Color.FromArgb(68, 88, 112);
+            cboNhanVien.ItemHeight = 30;
+            cboNhanVien.Location = new Point(21, 2);
+            cboNhanVien.Name = "cboNhanVien";
+            cboNhanVien.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            cboNhanVien.Size = new Size(175, 36);
+            cboNhanVien.TabIndex = 4;
             // 
             // FrmChamCong
             // 
@@ -154,6 +175,7 @@ namespace QuanLiNhanSu_TinhLuong
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(896, 748);
+            Controls.Add(cboNhanVien);
             Controls.Add(btnDiTre);
             Controls.Add(btnVang);
             Controls.Add(btnCoMat);
@@ -162,6 +184,7 @@ namespace QuanLiNhanSu_TinhLuong
             Margin = new Padding(3, 4, 3, 4);
             Name = "FrmChamCong";
             Text = "FrmChamCong";
+            Load += FrmChamCong_Load;
             ((System.ComponentModel.ISupportInitialize)dgvChamCong).EndInit();
             ResumeLayout(false);
         }
@@ -174,5 +197,6 @@ namespace QuanLiNhanSu_TinhLuong
         private Guna.UI2.WinForms.Guna2Button btnVang;
         private Guna.UI2.WinForms.Guna2Button btnDiTre;
         private ToolTip toolTip1;
+        private Guna.UI2.WinForms.Guna2ComboBox cboNhanVien;
     }
 }

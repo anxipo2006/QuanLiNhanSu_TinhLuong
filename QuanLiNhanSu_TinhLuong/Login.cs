@@ -21,7 +21,7 @@ namespace QuanLiNhanSu_TinhLuong
 
         private void btnDangNhap_Click(object sender, EventArgs e)
         {
-            // Bọc Try...Catch theo đúng Nhiệm vụ 4 của Nhóm trưởng
+            // Bọc Try...Catch theo đúng Nhiệm vụ 4 để ghi nhận ngoại lệ hệ thống
             try
             {
                 using (var context = new QuanLiNhanSu_TinhLuong.Data.QuanlynhansuContext())
@@ -29,18 +29,18 @@ namespace QuanLiNhanSu_TinhLuong
                     string user = txtUsername.Text.Trim();
                     string pass = txtPassword.Text.Trim();
 
-                    // Tìm tài khoản trong Database
+                    // Tìm tài khoản khớp thông tin trong Database Cloud
                     var account = context.Accounts.FirstOrDefault(a => a.Username == user && a.Password == pass);
 
                     if (account != null)
                     {
                         MessageBox.Show($"Đăng nhập thành công! Xin chào {account.DisplayName}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        // Mở Form chính và truyền quyền (Role) qua
-                        // Lưu ý: Đổi 'Form1' thành tên Form chính của bạn nếu cần
-                        Form1 frm = new Form1(account.Role);
+                        // CHỈNH SỬA TẠI ĐÂY: Chuyển hướng mở từ Form1 sang FrmDashboard và nạp quyền (Role) vào
+                        FrmDashboard frm = new FrmDashboard(account.Role);
                         frm.Show();
-                        this.Hide(); // Ẩn form login đi
+
+                        this.Hide(); // Ẩn form login đi sau khi chuyển giao diện thành công
                     }
                     else
                     {
@@ -50,9 +50,9 @@ namespace QuanLiNhanSu_TinhLuong
             }
             catch (Exception ex)
             {
-                // Gọi hàm Ghi Log của Nhóm trưởng An viết sẵn
+                // Gọi hàm Ghi Log tập trung vào file log.txt để đảm bảo tiêu chí xử lý ngoại lệ
                 QuanLiNhanSu_TinhLuong.Services.ErrorLogger.WriteLog(ex);
-                MessageBox.Show("Lỗi kết nối cơ sở dữ liệu. Vui lòng xem log.txt!", "Lỗi hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi kết nối cơ sở dữ liệu. Vui lòng xem chi tiết tại file log.txt!", "Lỗi hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -63,10 +63,10 @@ namespace QuanLiNhanSu_TinhLuong
 
         private void btnDangKy_Click(object sender, EventArgs e)
         {
-            /// 1. Kiểm tra nhập liệu cơ bản
+            // 1. Kiểm tra nhập liệu cơ bản tránh trường hợp chuỗi rỗng
             if (string.IsNullOrWhiteSpace(txtUsername.Text) || string.IsNullOrWhiteSpace(txtPassword.Text))
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ Username và Password!", "Thông báo");
+                MessageBox.Show("Vui lòng nhập đầy đủ Username và Password!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -74,7 +74,7 @@ namespace QuanLiNhanSu_TinhLuong
             {
                 using (var context = new QuanlynhansuContext())
                 {
-                    // 2. Kiểm tra xem tên đăng nhập đã tồn tại chưa
+                    // 2. Kiểm tra xem tên đăng nhập đã tồn tại trong hệ thống chưa
                     var checkExist = context.Accounts.Any(a => a.Username == txtUsername.Text.Trim());
                     if (checkExist)
                     {
@@ -82,26 +82,26 @@ namespace QuanLiNhanSu_TinhLuong
                         return;
                     }
 
-                    // 3. Tạo tài khoản mới
+                    // 3. Tạo bản ghi tài khoản mới
                     var newAcc = new Account
                     {
                         Username = txtUsername.Text.Trim(),
-                        Password = txtPassword.Text.Trim(), // Lưu ý: thực tế nên mã hóa pass, nhưng đồ án thì để vầy cũng được
-                        DisplayName = txtUsername.Text.Trim(), // Tạm lấy User làm tên hiển thị
-                        Role = "NhanVien" // Mặc định đăng ký mới là Nhân viên
+                        Password = txtPassword.Text.Trim(),
+                        DisplayName = txtUsername.Text.Trim(), // Tạm lấy Username làm tên hiển thị ban đầu
+                        Role = "NhanVien" // Mặc định tất cả các tài khoản tự đăng ký mới đều gán quyền Nhân viên
                     };
 
                     context.Accounts.Add(newAcc);
                     context.SaveChanges();
 
-                    MessageBox.Show("Đăng ký tài khoản thành công!", "Thông báo");
+                    MessageBox.Show("Đăng ký tài khoản thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                // Ghi log lỗi nếu có biến cố (Nhiệm vụ 4)
+                // Ghi nhận lỗi hệ thống phát sinh trong quá trình ghi dữ liệu xuống database
                 QuanLiNhanSu_TinhLuong.Services.ErrorLogger.WriteLog(ex);
-                MessageBox.Show("Lỗi đăng ký! Vui lòng kiểm tra lại Database.", "Lỗi hệ thống");
+                MessageBox.Show("Lỗi đăng ký! Vui lòng kiểm tra lại trạng thái kết nối Database.", "Lỗi hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

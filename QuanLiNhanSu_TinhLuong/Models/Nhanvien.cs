@@ -22,6 +22,7 @@ public partial class Nhanvien
     public int? MaCv { get; set; }
 
     public decimal LuongCoBan { get; set; }
+    public string? HinhAnh { get; set; } // Thêm dòng này để C# hiểu được cột Hình Ảnh
 
    // public string? Email { get; set; }
 

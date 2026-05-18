@@ -67,38 +67,42 @@ public partial class QuanlynhansuContext : DbContext
         modelBuilder.Entity<Bangluong>(entity =>
         {
             entity.HasKey(e => e.MaBl).HasName("PRIMARY");
-
             entity.ToTable("bangluong");
-
             entity.HasIndex(e => e.MaNv, "MaNV");
 
             entity.Property(e => e.MaBl).HasColumnName("MaBL");
             entity.Property(e => e.MaNv).HasColumnName("MaNV");
             entity.Property(e => e.ThangNam).HasMaxLength(7);
-            entity.Property(e => e.TongTienLuong)
-                .HasPrecision(18)
-                .HasDefaultValueSql("'0'");
 
-            entity.HasOne(d => d.MaNvNavigation).WithMany(p => p.Bangluongs)
+            // Khai báo các cột tính lương mới cho EF Core
+            entity.Property(e => e.TongNgayCong);
+            entity.Property(e => e.PhuCap).HasColumnType("decimal(18,0)");
+            entity.Property(e => e.KhauTru).HasColumnType("decimal(18,0)");
+            entity.Property(e => e.LuongThucNhan).HasColumnType("decimal(18,0)");
+
+            entity.HasOne(d => d.MaNvNavigation)
+                .WithMany(p => p.Bangluongs)
                 .HasForeignKey(d => d.MaNv)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("bangluong_ibfk_1");
         });
 
         modelBuilder.Entity<Chamcong>(entity =>
         {
             entity.HasKey(e => e.MaCc).HasName("PRIMARY");
-
             entity.ToTable("chamcong");
-
             entity.HasIndex(e => e.MaNv, "MaNV");
 
             entity.Property(e => e.MaCc).HasColumnName("MaCC");
             entity.Property(e => e.MaNv).HasColumnName("MaNV");
-            entity.Property(e => e.SoNgayDiLam).HasDefaultValueSql("'0'");
-            entity.Property(e => e.ThangNam).HasMaxLength(7);
+            entity.Property(e => e.NgayChamCong).HasColumnType("date");
+            entity.Property(e => e.TrangThai).HasMaxLength(50);
+            entity.Property(e => e.GhiChu).HasMaxLength(255);
 
-            entity.HasOne(d => d.MaNvNavigation).WithMany(p => p.Chamcongs)
+            entity.HasOne(d => d.MaNvNavigation)
+                .WithMany(p => p.Chamcongs)
                 .HasForeignKey(d => d.MaNv)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("chamcong_ibfk_1");
         });
 
@@ -132,7 +136,7 @@ public partial class QuanlynhansuContext : DbContext
             entity.Property(e => e.Email).HasMaxLength(100);
             entity.Property(e => e.GioiTinh).HasMaxLength(10);
             entity.Property(e => e.HoTen).HasMaxLength(100);
-            entity.Property(e => e.LuongCoBan).HasPrecision(18);
+            entity.Property(e => e.HinhAnh).HasMaxLength(255).HasColumnName("HinhAnh");
             entity.Property(e => e.MaCv).HasColumnName("MaCV");
             entity.Property(e => e.MaPb).HasColumnName("MaPB");
             entity.Property(e => e.Sdt)

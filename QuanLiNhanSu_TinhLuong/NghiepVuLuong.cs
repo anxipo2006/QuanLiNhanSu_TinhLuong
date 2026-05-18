@@ -1,50 +1,95 @@
 ﻿using System;
+using System.Linq;
 using QuanLiNhanSu_TinhLuong.Data;
 using QuanLiNhanSu_TinhLuong.Models;
-using System.Linq;
+using QuanLiNhanSu_TinhLuong.Services;
 
 namespace QuanLiNhanSu_TinhLuong
 {
     public class NghiepVuLuong
     {
-        // Hàm tính lương thực lãnh cho 1 nhân viên
-        public decimal TinhLuongThucLanh(int maNV, int thang, int nam) // Đã bỏ tham số soNgayDiLam vì hệ thống sẽ tự đếm
+        public decimal TinhVaLuuLuongThang(int maNV, int thang, int nam)
         {
-            using (var context = new QuanlynhansuContext())
+            try
             {
-                // 1. Tìm nhân viên và chức vụ
-                var nhanVien = context.Nhanviens.Find(maNV);
-                if (nhanVien == null) return 0;
+                using (var context = new QuanlynhansuContext())
+                {
+                    var nhanVien = context.Nhanviens.Find(maNV);
+                    if (nhanVien == null) return 0;
 
-                var chucVu = context.Chucvus.Find(nhanVien.MaCv);
-                decimal phuCap = chucVu != null && chucVu.PhuCap.HasValue ? chucVu.PhuCap.Value : 0;
-                decimal luongCoBan = nhanVien.LuongCoBan;
+                    decimal phuCap = 0;
+                    if (nhanVien.MaCv.HasValue)
+                    {
+                        var chucVu = context.Chucvus.Find(nhanVien.MaCv.Value);
+                        if (chucVu != null && chucVu.PhuCap.HasValue)
+                        {
+                            phuCap = chucVu.PhuCap.Value;
+                        }
+                    }
 
-                // 2. Dùng LINQ GroupBy và Sum để tổng hợp ngày công từ bảng Chamcong (ĂN ĐIỂM TIÊU CHÍ LINQ)
-                string thangNamStr = $"{thang:D2}/{nam}"; // Format chuỗi thành "10/2026"
-                var tongHopCong = context.Chamcongs
-                    .Where(cc => cc.MaNv == maNV && cc.ThangNam == thangNamStr)
-                    .GroupBy(cc => cc.MaNv)
-                    .Select(g => new {
-                        TongNgayDiLam = g.Sum(cc => cc.SoNgayDiLam)
-                    }).FirstOrDefault();
+                    // FIX LỖI 1: Tự động chuyển đổi năm (Nếu nhập 26 sẽ tự hiểu là 2026)
+                    int namThucTe = nam < 100 ? 2000 + nam : nam;
 
-                // Nếu không có dữ liệu chấm công thì coi như làm 0 ngày
-                float soNgayDiLamThucTe = tongHopCong != null ? (float)tongHopCong.TongNgayDiLam : 0;
+                    DateOnly tuNgay = new DateOnly(namThucTe, thang, 1);
+                    DateOnly denNgay = tuNgay.AddMonths(1).AddDays(-1);
 
-                // 3. Tính Lương 1 ngày (Chuẩn 30/31 ngày linh hoạt)
-                int soNgayTrongThang = DateTime.DaysInMonth(nam, thang);
-                decimal luongMotNgay = luongCoBan / soNgayTrongThang;
+                    var dsChamCong = context.Chamcongs
+                        .Where(cc => cc.MaNv == maNV && cc.NgayChamCong >= tuNgay && cc.NgayChamCong <= denNgay)
+                        .ToList();
 
-                // 4. Dùng LINQ Sum tính tổng Khấu trừ (Tiền phạt vi phạm)
-                decimal tongPhat = context.Viphams
-                    .Where(vp => vp.MaNv == maNV && vp.NgayViPham.Value.Month == thang && vp.NgayViPham.Value.Year == nam)
-                    .Sum(vp => vp.TienPhat ?? 0);
+                    int soNgayCoMat = dsChamCong.Count(cc => cc.TrangThai != null && cc.TrangThai.ToLower().Contains("mặt"));
+                    int soNgayTre = dsChamCong.Count(cc => cc.TrangThai != null && cc.TrangThai.ToLower().Contains("trễ"));
 
-                // 5. Chốt công thức cuối cùng: (Lương CB * Ngày Công) + Phụ Cấp - Khấu Trừ
-                decimal tongLuongThucLanh = (luongMotNgay * (decimal)soNgayDiLamThucTe) + phuCap - tongPhat;
+                    float tongNgayCong = soNgayCoMat + soNgayTre;
 
-                return tongLuongThucLanh; // Đã sửa lỗi return 0
+                    // FIX LỖI 2: Luật công ty - Nếu tháng đó không đi làm ngày nào (0 công) thì cắt luôn Phụ cấp
+                    if (tongNgayCong == 0)
+                    {
+                        phuCap = 0;
+                    }
+
+                    decimal luongCoBan = nhanVien.LuongCoBan;
+                    decimal phatDiTre = soNgayTre * 50000m;
+                    decimal tienBaoHiem = luongCoBan * 0.08m;
+                    decimal khauTru = phatDiTre + tienBaoHiem;
+
+                    // Tính lương thực nhận
+                    decimal luongThucNhan = (luongCoBan / 30m) * (decimal)tongNgayCong + phuCap - khauTru;
+                    if (luongThucNhan < 0) luongThucNhan = 0;
+
+                    // Lưu định dạng chuỗi ThangNam nguyên bản theo UI (VD: 05/26)
+                    string thangNamStr = $"{thang:D2}/{nam}";
+                    var phieuLuongCu = context.Bangluongs.FirstOrDefault(bl => bl.MaNv == maNV && bl.ThangNam == thangNamStr);
+
+                    if (phieuLuongCu != null)
+                    {
+                        phieuLuongCu.TongNgayCong = tongNgayCong;
+                        phieuLuongCu.PhuCap = phuCap;
+                        phieuLuongCu.KhauTru = khauTru;
+                        phieuLuongCu.LuongThucNhan = luongThucNhan;
+                    }
+                    else
+                    {
+                        var phieuLuongMoi = new Bangluong
+                        {
+                            MaNv = maNV,
+                            ThangNam = thangNamStr,
+                            TongNgayCong = tongNgayCong,
+                            PhuCap = phuCap,
+                            KhauTru = khauTru,
+                            LuongThucNhan = luongThucNhan
+                        };
+                        context.Bangluongs.Add(phieuLuongMoi);
+                    }
+
+                    context.SaveChanges();
+                    return luongThucNhan;
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.WriteLog(ex);
+                return -1;
             }
         }
     }
