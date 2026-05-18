@@ -42,7 +42,8 @@
             // 
             // monthCalendar1
             // 
-            monthCalendar1.Location = new Point(19, 44);
+            monthCalendar1.BackColor = Color.FromArgb(192, 255, 255);
+            monthCalendar1.Location = new Point(24, 56);
             monthCalendar1.Margin = new Padding(10, 12, 10, 12);
             monthCalendar1.MaxSelectionCount = 31;
             monthCalendar1.Name = "monthCalendar1";
@@ -51,7 +52,7 @@
             // 
             // dgvChamCong
             // 
-            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewCellStyle1.BackColor = Color.Transparent;
             dgvChamCong.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(37, 99, 235);
@@ -71,13 +72,13 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dgvChamCong.DefaultCellStyle = dataGridViewCellStyle3;
             dgvChamCong.GridColor = Color.FromArgb(231, 229, 255);
-            dgvChamCong.Location = new Point(21, 267);
+            dgvChamCong.Location = new Point(21, 360);
             dgvChamCong.Margin = new Padding(3, 4, 3, 4);
             dgvChamCong.Name = "dgvChamCong";
             dgvChamCong.RowHeadersVisible = false;
             dgvChamCong.RowHeadersWidth = 51;
             dgvChamCong.RowTemplate.Height = 40;
-            dgvChamCong.Size = new Size(846, 400);
+            dgvChamCong.Size = new Size(846, 370);
             dgvChamCong.TabIndex = 1;
             dgvChamCong.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvChamCong.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -103,58 +104,58 @@
             // 
             // btnCoMat
             // 
-            btnCoMat.BorderRadius = 10;
+            btnCoMat.BorderRadius = 14;
             btnCoMat.CustomizableEdges = customizableEdges1;
-            btnCoMat.FillColor = Color.FromArgb(220, 252, 231);
-            btnCoMat.Font = new Font("Segoe UI", 9F);
-            btnCoMat.ForeColor = Color.FromArgb(22, 101, 52);
-            btnCoMat.HoverState.FillColor = Color.FromArgb(187, 247, 208);
-            btnCoMat.Location = new Point(311, 44);
+            btnCoMat.FillColor = Color.FromArgb(47, 158, 109);
+            btnCoMat.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnCoMat.ForeColor = Color.White;
+            btnCoMat.Location = new Point(340, 52);
             btnCoMat.Margin = new Padding(3, 4, 3, 4);
             btnCoMat.Name = "btnCoMat";
             btnCoMat.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnCoMat.Size = new Size(114, 48);
+            btnCoMat.Size = new Size(160, 64);
             btnCoMat.TabIndex = 2;
-            btnCoMat.Text = "Có mặt";
-            toolTip1.SetToolTip(btnCoMat, "?ánh d?u có m?t cho nhân viên ch?n");
+            btnCoMat.Text = "  Có mặt";
+            toolTip1.SetToolTip(btnCoMat, "Đánh dấu có mặt cho nhân viên được chọn");
             // 
             // btnVang
             // 
-            btnVang.BorderRadius = 10;
+            btnVang.BorderRadius = 14;
             btnVang.CustomizableEdges = customizableEdges3;
-            btnVang.FillColor = Color.FromArgb(254, 226, 226);
-            btnVang.Font = new Font("Segoe UI", 9F);
-            btnVang.ForeColor = Color.FromArgb(153, 27, 27);
-            btnVang.HoverState.FillColor = Color.FromArgb(254, 202, 202);
-            btnVang.Location = new Point(311, 117);
+            btnVang.FillColor = Color.FromArgb(229, 62, 62);
+            btnVang.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnVang.ForeColor = Color.White;
+            btnVang.HoverState.FillColor = Color.FromArgb(210, 50, 50);
+            btnVang.Location = new Point(340, 132);
             btnVang.Margin = new Padding(3, 4, 3, 4);
             btnVang.Name = "btnVang";
             btnVang.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            btnVang.Size = new Size(114, 48);
+            btnVang.Size = new Size(160, 64);
             btnVang.TabIndex = 1;
-            btnVang.Text = "Vắng";
-            toolTip1.SetToolTip(btnVang, "?ánh d?u v?ng");
+            btnVang.Text = "  Vắng";
+            toolTip1.SetToolTip(btnVang, "Đánh dấu vắng");
             // 
             // btnDiTre
             // 
-            btnDiTre.BorderRadius = 10;
+            btnDiTre.BorderRadius = 14;
             btnDiTre.CustomizableEdges = customizableEdges5;
-            btnDiTre.FillColor = Color.FromArgb(254, 243, 199);
-            btnDiTre.Font = new Font("Segoe UI", 9F);
-            btnDiTre.ForeColor = Color.FromArgb(146, 64, 14);
-            btnDiTre.HoverState.FillColor = Color.FromArgb(253, 230, 138);
-            btnDiTre.Location = new Point(311, 182);
+            btnDiTre.FillColor = Color.FromArgb(217, 150, 60);
+            btnDiTre.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnDiTre.ForeColor = Color.White;
+            btnDiTre.HoverState.FillColor = Color.FromArgb(200, 135, 50);
+            btnDiTre.Location = new Point(340, 212);
             btnDiTre.Margin = new Padding(3, 4, 3, 4);
             btnDiTre.Name = "btnDiTre";
             btnDiTre.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            btnDiTre.Size = new Size(114, 48);
+            btnDiTre.Size = new Size(160, 64);
             btnDiTre.TabIndex = 0;
-            btnDiTre.Text = "Đi trễ";
-            toolTip1.SetToolTip(btnDiTre, "?ánh d?u ?i tr?");
+            btnDiTre.Text = "  Đi trễ";
+            toolTip1.SetToolTip(btnDiTre, "Đánh dấu đi trễ");
             // 
             // cboNhanVien
             // 
-            cboNhanVien.BackColor = Color.Transparent;
+            cboNhanVien.BackColor = Color.FromArgb(192, 255, 255);
+            cboNhanVien.BorderRadius = 8;
             cboNhanVien.CustomizableEdges = customizableEdges7;
             cboNhanVien.DrawMode = DrawMode.OwnerDrawFixed;
             cboNhanVien.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -163,10 +164,10 @@
             cboNhanVien.Font = new Font("Segoe UI", 10F);
             cboNhanVien.ForeColor = Color.FromArgb(68, 88, 112);
             cboNhanVien.ItemHeight = 30;
-            cboNhanVien.Location = new Point(21, 2);
+            cboNhanVien.Location = new Point(21, 12);
             cboNhanVien.Name = "cboNhanVien";
             cboNhanVien.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            cboNhanVien.Size = new Size(175, 36);
+            cboNhanVien.Size = new Size(260, 36);
             cboNhanVien.TabIndex = 4;
             // 
             // FrmChamCong

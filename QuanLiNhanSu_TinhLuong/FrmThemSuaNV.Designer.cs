@@ -18,6 +18,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmThemSuaNV));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -81,6 +82,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.BackgroundImage = (Image)resources.GetObject("tabPage1.BackgroundImage");
             tabPage1.Controls.Add(txtEmail);
             tabPage1.Controls.Add(rdoNu);
             tabPage1.Controls.Add(rdoNam);
@@ -93,6 +95,7 @@
             tabPage1.Controls.Add(dtpBirth);
             tabPage1.Controls.Add(cboPhongBan);
             tabPage1.Controls.Add(cboChucVu);
+            tabPage1.ForeColor = SystemColors.ControlLightLight;
             tabPage1.Location = new Point(4, 29);
             tabPage1.Margin = new Padding(3, 4, 3, 4);
             tabPage1.Name = "tabPage1";
@@ -206,7 +209,6 @@
             btnLuu.TabIndex = 6;
             btnLuu.Text = "Lưu";
             btnLuu.UseVisualStyleBackColor = true;
-         
             // 
             // picAvatar
             // 
@@ -226,7 +228,7 @@
             // 
             btnChonAnh.BorderRadius = 10;
             btnChonAnh.CustomizableEdges = customizableEdges9;
-            btnChonAnh.FillColor = Color.White;
+            btnChonAnh.FillColor = Color.FromArgb(192, 255, 255);
             btnChonAnh.Font = new Font("Segoe UI", 9F);
             btnChonAnh.ForeColor = Color.FromArgb(37, 99, 235);
             btnChonAnh.Location = new Point(18, 221);
@@ -384,7 +386,6 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "FrmThemSuaNV";
             Text = "FrmThemSuaNV";
-            
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();

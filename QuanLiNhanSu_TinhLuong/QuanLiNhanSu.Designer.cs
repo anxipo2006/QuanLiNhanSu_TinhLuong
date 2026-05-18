@@ -72,7 +72,7 @@
             // 
             // btnChọnAnh
             // 
-            btnChọnAnh.BackColor = Color.White;
+            btnChọnAnh.BackColor = Color.FromArgb(192, 255, 255);
             btnChọnAnh.ForeColor = Color.FromArgb(37, 99, 235);
             btnChọnAnh.Location = new Point(777, 171);
             btnChọnAnh.Margin = new Padding(3, 4, 3, 4);
@@ -119,6 +119,7 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 9.75F);
             label1.Location = new Point(32, 123);
             label1.Name = "label1";
@@ -129,6 +130,7 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 9.75F);
             label2.Location = new Point(32, 203);
             label2.Name = "label2";
@@ -139,6 +141,7 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
             label3.Font = new Font("Segoe UI", 9.75F);
             label3.Location = new Point(32, 283);
             label3.Name = "label3";
@@ -149,6 +152,7 @@
             // label4
             // 
             label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
             label4.Font = new Font("Segoe UI", 9.75F);
             label4.Location = new Point(446, 123);
             label4.Name = "label4";
@@ -159,6 +163,7 @@
             // label5
             // 
             label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
             label5.Font = new Font("Segoe UI", 9.75F);
             label5.Location = new Point(446, 203);
             label5.Name = "label5";
@@ -169,6 +174,7 @@
             // label6
             // 
             label6.AutoSize = true;
+            label6.BackColor = Color.Transparent;
             label6.Font = new Font("Segoe UI", 9.75F);
             label6.Location = new Point(446, 283);
             label6.Name = "label6";
@@ -241,7 +247,7 @@
             // 
             // btnThem
             // 
-            btnThem.BackColor = Color.FromArgb(37, 99, 235);
+            btnThem.BackColor = Color.FromArgb(0, 192, 192);
             btnThem.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             btnThem.ForeColor = Color.White;
             btnThem.Location = new Point(32, 389);

@@ -99,6 +99,7 @@
             // 
             // btnXoa
             // 
+            btnXoa.BorderRadius = 20;
             btnXoa.CustomizableEdges = customizableEdges3;
             btnXoa.DisabledState.BorderColor = Color.DarkGray;
             btnXoa.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -116,6 +117,7 @@
             // 
             // btnThemMoi
             // 
+            btnThemMoi.BorderRadius = 20;
             btnThemMoi.CustomizableEdges = customizableEdges5;
             btnThemMoi.DisabledState.BorderColor = Color.DarkGray;
             btnThemMoi.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -133,6 +135,7 @@
             // 
             // btnSua
             // 
+            btnSua.BorderRadius = 20;
             btnSua.CustomizableEdges = customizableEdges7;
             btnSua.DisabledState.BorderColor = Color.DarkGray;
             btnSua.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -150,10 +153,10 @@
             // 
             // dgvNhanVien
             // 
-            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(185, 226, 218);
             dgvNhanVien.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(37, 99, 235);
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(22, 160, 133);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             dataGridViewCellStyle2.ForeColor = Color.White;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
@@ -162,15 +165,15 @@
             dgvNhanVien.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvNhanVien.ColumnHeadersHeight = 29;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(208, 235, 230);
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(99, 191, 173);
+            dataGridViewCellStyle3.SelectionForeColor = Color.Black;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dgvNhanVien.DefaultCellStyle = dataGridViewCellStyle3;
             dgvNhanVien.Dock = DockStyle.Fill;
-            dgvNhanVien.GridColor = Color.FromArgb(226, 232, 240);
+            dgvNhanVien.GridColor = Color.FromArgb(182, 224, 216);
             dgvNhanVien.Location = new Point(18, 21);
             dgvNhanVien.Margin = new Padding(3, 4, 3, 4);
             dgvNhanVien.Name = "dgvNhanVien";
@@ -179,27 +182,28 @@
             dgvNhanVien.RowTemplate.Height = 40;
             dgvNhanVien.Size = new Size(581, 558);
             dgvNhanVien.TabIndex = 0;
-            dgvNhanVien.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
+            dgvNhanVien.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.GreenSea;
+            dgvNhanVien.ThemeStyle.AlternatingRowsStyle.BackColor = Color.FromArgb(185, 226, 218);
             dgvNhanVien.ThemeStyle.AlternatingRowsStyle.Font = null;
             dgvNhanVien.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty;
             dgvNhanVien.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.Empty;
             dgvNhanVien.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.Empty;
             dgvNhanVien.ThemeStyle.BackColor = Color.White;
-            dgvNhanVien.ThemeStyle.GridColor = Color.FromArgb(226, 232, 240);
-            dgvNhanVien.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(37, 99, 235);
+            dgvNhanVien.ThemeStyle.GridColor = Color.FromArgb(182, 224, 216);
+            dgvNhanVien.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(22, 160, 133);
             dgvNhanVien.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
             dgvNhanVien.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             dgvNhanVien.ThemeStyle.HeaderStyle.ForeColor = Color.White;
             dgvNhanVien.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvNhanVien.ThemeStyle.HeaderStyle.Height = 29;
             dgvNhanVien.ThemeStyle.ReadOnly = false;
-            dgvNhanVien.ThemeStyle.RowsStyle.BackColor = Color.White;
+            dgvNhanVien.ThemeStyle.RowsStyle.BackColor = Color.FromArgb(208, 235, 230);
             dgvNhanVien.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvNhanVien.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
-            dgvNhanVien.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
+            dgvNhanVien.ThemeStyle.RowsStyle.ForeColor = Color.Black;
             dgvNhanVien.ThemeStyle.RowsStyle.Height = 40;
-            dgvNhanVien.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            dgvNhanVien.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dgvNhanVien.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(99, 191, 173);
+            dgvNhanVien.ThemeStyle.RowsStyle.SelectionForeColor = Color.Black;
             // 
             // FrmNhanVien
             // 
