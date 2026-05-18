@@ -24,30 +24,53 @@ namespace QuanLiNhanSu_TinhLuong
             // Bọc Try...Catch theo đúng Nhiệm vụ 4 để ghi nhận ngoại lệ hệ thống
             try
             {
+                string user = txtUsername.Text.Trim();
+                string pass = txtPassword.Text.Trim();
+
+                // =======================================================================
+                // TRƯỜNG HỢP ĐẶC BIỆT: Tài khoản cố định admin / 1234
+                // =======================================================================
+                if (user == "admin" && pass == "1234")
+                {
+                    MessageBox.Show("Đăng nhập thành công! Xin chào Quản trị viên (Admin)", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Vì không chứa đuôi @gmail.com nên quyền mặc định sẽ là Admin
+                    string targetRole = "Admin";
+
+                    FrmDashboard frm = new FrmDashboard(targetRole);
+                    frm.Show();
+
+                    this.Hide(); // Ẩn form login đi
+                    return; // Dừng hàm lại tại đây, không cần chạy xuống kiểm tra Database nữa
+                }
+
+                // =======================================================================
+                // TRƯỜNG HỢP THƯỜNG: Kiểm tra trong Database Cloud
+                // =======================================================================
                 using (var context = new QuanLiNhanSu_TinhLuong.Data.QuanlynhansuContext())
                 {
-                    string user = txtUsername.Text.Trim();
-                    string pass = txtPassword.Text.Trim();
-
                     // Tìm tài khoản khớp thông tin trong Database Cloud
                     var account = context.Accounts.FirstOrDefault(a => a.Username == user && a.Password == pass);
 
                     if (account != null)
                     {
-                        MessageBox.Show($"Đăng nhập thành công! Xin chào {account.DisplayName}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        string targetRole;
 
-                        // =======================================================================
-                        // LOGIC PHÂN QUYỀN: Kiểm tra cấu trúc Username để gán quyền tương ứng
-                        // =======================================================================
-                        string targetRole = "Admin"; // Mặc định tài khoản tên thường (không chứa đuôi gmail) là Admin
-
-                        // Nếu tên tài khoản chứa đuôi @gmail.com thì ép về quyền NhanVien
+                        // LOGIC PHÂN QUYỀN VÀ HIỂN THỊ THÔNG BÁO TƯƠNG ỨNG
                         if (user.ToLower().EndsWith("@gmail.com"))
                         {
                             targetRole = "NhanVien";
+                            // Hiển thị dòng thông báo đăng nhập thành công cho Nhân Viên
+                            MessageBox.Show($"Đăng nhập thành công! Xin chào {account.DisplayName} (Nhân Viên)", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            targetRole = "Admin";
+                            // Hiển thị dòng thông báo đăng nhập thành công cho Admin
+                            MessageBox.Show($"Đăng nhập thành công! Xin chào {account.DisplayName} (Admin)", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
 
-                        // Nạp quyền đã được tính toán (targetRole) vào Form Dashboard thay vì account.Role từ DB
+                        // Nạp quyền đã được tính toán vào Form Dashboard
                         FrmDashboard frm = new FrmDashboard(targetRole);
                         frm.Show();
 
@@ -70,52 +93,7 @@ namespace QuanLiNhanSu_TinhLuong
         private void Login_Load(object sender, EventArgs e)
         {
 
-        }
-
-        private void btnDangKy_Click(object sender, EventArgs e)
-        {
-            // 1. Kiểm tra nhập liệu cơ bản tránh trường hợp chuỗi rỗng
-            if (string.IsNullOrWhiteSpace(txtUsername.Text) || string.IsNullOrWhiteSpace(txtPassword.Text))
-            {
-                MessageBox.Show("Vui lòng nhập đầy đủ Username và Password!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            try
-            {
-                using (var context = new QuanlynhansuContext())
-                {
-                    // 2. Kiểm tra xem tên đăng nhập đã tồn tại trong hệ thống chưa
-                    var checkExist = context.Accounts.Any(a => a.Username == txtUsername.Text.Trim());
-                    if (checkExist)
-                    {
-                        MessageBox.Show("Tài khoản này đã tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                    // 3. Tạo bản ghi tài khoản mới
-                    var newAcc = new Account
-                    {
-                        Username = txtUsername.Text.Trim(),
-                        Password = txtPassword.Text.Trim(),
-                        DisplayName = txtUsername.Text.Trim(), // Tạm lấy Username làm tên hiển thị ban đầu
-                        Role = "NhanVien" // Mặc định tất cả các tài khoản tự đăng ký mới đều gán quyền Nhân viên
-                    };
-
-                    context.Accounts.Add(newAcc);
-                    context.SaveChanges();
-
-                    MessageBox.Show("Đăng ký tài khoản thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                // Ghi nhận lỗi hệ thống phát sinh trong quá trình ghi dữ liệu xuống database
-                QuanLiNhanSu_TinhLuong.Services.ErrorLogger.WriteLog(ex);
-                MessageBox.Show("Lỗi đăng ký! Vui lòng kiểm tra lại trạng thái kết nối Database.", "Lỗi hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
+        }      
         private void guna2PanelMain_Paint(object sender, PaintEventArgs e)
         {
 
